@@ -1,0 +1,11 @@
+ARCHS = $(ARCHS_STANDARD)
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/AMapFoundation" "${PODS_ROOT}/AMapLocation" "${PODS_ROOT}/AlipaySDK-iOS" "${PODS_ROOT}/UMCCommon" "${PODS_ROOT}/UMCShare/UMShare" "${PODS_ROOT}/UMCShare/UMShare/UMSocialUI"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/HXPhotoPicker" "${PODS_ROOT}/Headers/Public/MJExtension" "${PODS_ROOT}/Headers/Public/SAMKeychain" "${PODS_ROOT}/Headers/Public/UMCShare" "${PODS_ROOT}/Headers/Public/WechatOpenSDK" "${PODS_ROOT}/Headers/Public/YLCategory"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking" "${PODS_CONFIGURATION_BUILD_DIR}/HXPhotoPicker" "${PODS_CONFIGURATION_BUILD_DIR}/MJExtension" "${PODS_CONFIGURATION_BUILD_DIR}/SAMKeychain" "${PODS_CONFIGURATION_BUILD_DIR}/YLCategory" "${PODS_ROOT}/UMCShare/UMShare/SocialLibraries/QQ" "${PODS_ROOT}/UMCShare/UMShare/SocialLibraries/Sina" "${PODS_ROOT}/UMCShare/UMShare/SocialLibraries/WeChat" "${PODS_ROOT}/WechatOpenSDK/OpenSDK1.8.7"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"AFNetworking" -l"HXPhotoPicker" -l"MJExtension" -l"SAMKeychain" -l"SocialQQ" -l"SocialSina" -l"SocialWeChat" -l"WeChatSDK" -l"YLCategory" -l"c++" -l"sqlite3" -l"sqlite3.0" -l"z" -framework "AMapFoundationKit" -framework "AMapLocationKit" -framework "AlipaySDK" -framework "CFNetwork" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMotion" -framework "CoreTelephony" -framework "CoreText" -framework "ExternalAccessory" -framework "Foundation" -framework "MobileCoreServices" -framework "Photos" -framework "PhotosUI" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration" -framework "UIKit" -framework "UMCommon" -framework "UMShare" -framework "UShareUI" -framework "WebKit"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods
+USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES

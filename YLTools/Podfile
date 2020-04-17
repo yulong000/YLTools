@@ -1,0 +1,19 @@
+platform :ios, '9.0'
+
+target 'YLTools' do
+
+pod 'AFNetworking'
+pod 'SAMKeychain'
+pod 'MJExtension'
+pod 'YLCategory'
+pod 'AlipaySDK-iOS'
+pod 'WechatOpenSDK'
+pod 'HXPhotoPicker'
+pod 'AMapLocation'
+pod 'UMCShare/UI'
+pod 'UMCShare/Social/ReducedWeChat'
+pod 'UMCShare/Social/ReducedQQ'
+pod 'UMCShare/Social/ReducedSina'
+pod 'UMCCommon'
+
+end

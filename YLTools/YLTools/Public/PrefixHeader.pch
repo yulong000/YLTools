@@ -1,0 +1,17 @@
+//
+//  PrefixHeader.pch
+//  YLTools
+//
+//  Created by weiyulong on 2020/4/17.
+//  Copyright © 2020 weiyulong. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "Macro.h"
+#import "MJExtension.h"
+#import "YLCategory.h"
+#import "MacroHeader.h"
+
+#endif /* PrefixHeader_pch */
