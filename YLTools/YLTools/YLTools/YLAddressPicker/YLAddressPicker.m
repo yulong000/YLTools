@@ -62,7 +62,7 @@
         self.pickerView.backgroundColor = WhiteColor;
         
         self.toolBar = [[UIView alloc] init];
-        self.toolBar.backgroundColor = RGBA(220, 220, 220, 1);
+        self.toolBar.backgroundColor = kAddressPickerToolbarBackgroundColor;
         [self addSubview:self.toolBar];
         
         self.cancelBtn = [[UIButton alloc] init];
@@ -251,7 +251,7 @@
 - (void)setToolbarBackgroundColor:(UIColor *)toolbarBackgroundColor {
     if(toolbarBackgroundColor) {
         _toolbarBackgroundColor = toolbarBackgroundColor;
-        [self.confirmBtn setTitleColor:_toolbarBackgroundColor forState:UIControlStateNormal];
+        self.toolBar.backgroundColor = _toolbarBackgroundColor;
     }
 }
 

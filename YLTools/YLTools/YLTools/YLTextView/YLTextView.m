@@ -104,6 +104,14 @@
     return self.textView.text;
 }
 
+- (BOOL)becomeFirstResponder {
+    return [self.textView becomeFirstResponder];
+}
+
+- (BOOL)resignFirstResponder {
+    return [self.textView resignFirstResponder];
+}
+
 - (void)textViewDidChange:(UITextView *)textView {
     self.placeholderLabel.hidden = textView.text.length > 0;
     if(self.maxLength > 0 && textView.markedTextRange == nil) {

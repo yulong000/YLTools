@@ -99,9 +99,9 @@
         case AVAuthorizationStatusNotDetermined: {
             // 请求权限
             [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-                if(resultBlock) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                     resultBlock(granted);
-                }
+                });
             }];
         }
             break;
