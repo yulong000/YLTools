@@ -44,7 +44,6 @@
 		00310B1B2449565500592F90 /* RichTextViewDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00310AFE2449565500592F90 /* RichTextViewDemoVC.m */; };
 		00310B1C2449565500592F90 /* DashLineDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00310B012449565500592F90 /* DashLineDemoVC.m */; };
 		00310B1E2449565500592F90 /* ShareDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00310B062449565500592F90 /* ShareDemoVC.m */; };
-		006007A82449607600A5D85A /* Address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 006007A72449607600A5D85A /* Address.plist */; };
 		006A9819243B1E2C000CB451 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A9818243B1E2C000CB451 /* AppDelegate.m */; };
 		006A981F243B1E2C000CB451 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A981E243B1E2C000CB451 /* ViewController.m */; };
 		006A9822243B1E2C000CB451 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006A9820243B1E2C000CB451 /* Main.storyboard */; };
@@ -53,6 +52,7 @@
 		006A982A243B1E2E000CB451 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A9829243B1E2E000CB451 /* main.m */; };
 		006A9834243B1E2E000CB451 /* YLToolsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A9833243B1E2E000CB451 /* YLToolsTests.m */; };
 		006A983F243B1E2E000CB451 /* YLToolsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A983E243B1E2E000CB451 /* YLToolsUITests.m */; };
+		00EBB4D5248751D50053CB7D /* Address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00EBB4D4248751D50053CB7D /* Address.plist */; };
 		07E32C8A5FF07931DF25227E /* libPods-YLTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB49B665EB1068212624D017 /* libPods-YLTools.a */; };
 /* End PBXBuildFile section */
 
@@ -149,7 +149,6 @@
 		00310B012449565500592F90 /* DashLineDemoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashLineDemoVC.m; sourceTree = "<group>"; };
 		00310B062449565500592F90 /* ShareDemoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDemoVC.m; sourceTree = "<group>"; };
 		00310B072449565500592F90 /* ShareDemoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDemoVC.h; sourceTree = "<group>"; };
-		006007A72449607600A5D85A /* Address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Address.plist; sourceTree = "<group>"; };
 		006A9814243B1E2C000CB451 /* YLTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YLTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		006A9817243B1E2C000CB451 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		006A9818243B1E2C000CB451 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -166,6 +165,7 @@
 		006A983A243B1E2E000CB451 /* YLToolsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YLToolsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		006A983E243B1E2E000CB451 /* YLToolsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLToolsUITests.m; sourceTree = "<group>"; };
 		006A9840243B1E2E000CB451 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00EBB4D4248751D50053CB7D /* Address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Address.plist; sourceTree = "<group>"; };
 		1AB7B212A73928ABDFB7A287 /* Pods-YLTools.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLTools.release.xcconfig"; path = "Target Support Files/Pods-YLTools/Pods-YLTools.release.xcconfig"; sourceTree = "<group>"; };
 		ACEC3FC55856B8D19269EA60 /* Pods-YLTools.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLTools.debug.xcconfig"; path = "Target Support Files/Pods-YLTools/Pods-YLTools.debug.xcconfig"; sourceTree = "<group>"; };
 		DB49B665EB1068212624D017 /* libPods-YLTools.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YLTools.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,9 +323,9 @@
 		00310AA7244952AE00592F90 /* YLAddressPicker */ = {
 			isa = PBXGroup;
 			children = (
-				006007A72449607600A5D85A /* Address.plist */,
 				00310AA8244952C200592F90 /* YLAddressPicker.h */,
 				00310AA9244952C200592F90 /* YLAddressPicker.m */,
+				00EBB4D4248751D50053CB7D /* Address.plist */,
 			);
 			path = YLAddressPicker;
 			sourceTree = "<group>";
@@ -749,9 +749,9 @@
 			files = (
 				00310B0E2449565500592F90 /* G.E.M. 邓紫棋-泡沫.mp3 in Resources */,
 				006A9827243B1E2E000CB451 /* LaunchScreen.storyboard in Resources */,
-				006007A82449607600A5D85A /* Address.plist in Resources */,
 				006A9824243B1E2E000CB451 /* Assets.xcassets in Resources */,
 				006A9822243B1E2C000CB451 /* Main.storyboard in Resources */,
+				00EBB4D5248751D50053CB7D /* Address.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

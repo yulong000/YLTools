@@ -225,7 +225,7 @@
         options.resizeMode = PHImageRequestOptionsDeliveryModeOpportunistic;
         options.synchronous = YES;
         options.networkAccessAllowed = YES;
-        [[PHCachingImageManager defaultManager] requestImageForAsset:photoMode.asset targetSize:CGSizeMake(size.width * [UIScreen mainScreen].scale, size.height * [UIScreen mainScreen].scale) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        [[PHCachingImageManager defaultManager] requestImageForAsset:photoMode.asset targetSize:size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
             if(result) {
                 image = result;
             }

@@ -14,18 +14,62 @@
 #define kAddressPickerConfirmButtonTitleColor  [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
 #define kAddressPickerContentViewHeight        ([UIScreen mainScreen].bounds.size.height / 3)
 
+#pragma mark - 省
+
+@class YLAddressCityModel;
+@interface YLAddressProvinceModel : NSObject
+
+@property (nonatomic, copy)   NSString *province;
+@property (nonatomic, strong) NSArray <YLAddressCityModel *> *cities;
+
+@end
+
+@implementation YLAddressProvinceModel
+
++ (NSDictionary *)mj_objectClassInArray {
+    return @{@"cities" : @"YLAddressCityModel"};
+}
+
+@end
+
+#pragma mark  市
+
+@class YLAddressDistrictModel;
+@interface YLAddressCityModel : NSObject
+
+@property (nonatomic, copy)   NSString *city;
+@property (nonatomic, strong) NSArray <YLAddressDistrictModel *> *districts;
+
+@end
+
+@implementation YLAddressCityModel
+
++ (NSDictionary *)mj_objectClassInArray {
+    return @{@"districts" : @"YLAddressDistrictModel"};
+}
+
+@end
+
+#pragma mark 区
+
+@interface YLAddressDistrictModel : NSObject
+
+@property (nonatomic, copy)   NSString *district;
+@property (nonatomic, strong) NSArray <NSString *> *streets;
+
+@end
+
+@implementation YLAddressDistrictModel
+
+
+@end
+
+#pragma mark -
+
 
 @interface YLAddressPicker () <UIPickerViewDelegate, UIPickerViewDataSource>
 
-/**  所有的数据  */
-@property (nonatomic, strong) NSDictionary *dataDict;
-
-/**  省份  */
-@property (nonatomic, strong) NSArray *provinceArr;
-/**  市  */
-@property (nonatomic, strong) NSArray *cityArr;
-/**  区  */
-@property (nonatomic, strong) NSArray *districtArr;
+@property (nonatomic, strong) NSArray <YLAddressProvinceModel *> *dataArr;
 
 /**  记录省市区  */
 @property (nonatomic, assign) NSInteger provinceIndex;
@@ -79,10 +123,8 @@
         
         [self addSubview:self.pickerView];
         NSString *path = [[NSBundle mainBundle] pathForResource:@"Address" ofType:@"plist"];
-        self.dataDict = [[NSDictionary alloc] initWithContentsOfFile:path];
-        self.provinceArr = self.dataDict.allKeys;
-        [self.pickerView selectRow:0 inComponent:0 animated:YES];
-        [self pickerView:self.pickerView didSelectRow:0 inComponent:0];
+        NSArray *arr = [NSArray arrayWithContentsOfFile:path];
+        self.dataArr = [YLAddressProvinceModel mj_objectArrayWithKeyValuesArray:arr];
     }
     return self;
 }
@@ -103,23 +145,43 @@
 }
 
 - (void)setAddressTmp:(AddressModel *)addressTmp {
-    if(addressTmp == nil)   return;
     _addressTmp = addressTmp;
+    NSString *province = _addressTmp.province;
     NSString *city = _addressTmp.city;
     NSString *district = _addressTmp.district;
-    NSInteger index = [self.provinceArr indexOfObject:_addressTmp.province];
-    if(index >= self.provinceArr.count || index < 0)    index = 0;
-    [self.pickerView selectRow:index inComponent:0 animated:YES];
-    [self pickerView:self.pickerView didSelectRow:index inComponent:0];
-    index = [self.cityArr indexOfObject:city];
-    if(index >= self.cityArr.count || index < 0)    index = 0;
-    [self.pickerView selectRow:index inComponent:1 animated:YES];
-    [self pickerView:self.pickerView didSelectRow:index inComponent:1];
+    NSInteger provinceIndex = 0;
+    for (int i = 0; i < self.dataArr.count; i ++) {
+        YLAddressProvinceModel *model = self.dataArr[i];
+        if([model.province isEqualToString:province]) {
+            provinceIndex = i;
+            break;
+        }
+    }
+    [self.pickerView selectRow:provinceIndex inComponent:0 animated:YES];
+    [self pickerView:self.pickerView didSelectRow:provinceIndex inComponent:0];
+    
+    NSInteger cityIndex = 0;
+    for (int i = 0; i < self.dataArr[provinceIndex].cities.count; i ++) {
+        YLAddressCityModel *model = self.dataArr[provinceIndex].cities[i];
+        if([model.city isEqualToString:city]) {
+            cityIndex = i;
+            break;
+        }
+    }
+    
+    [self.pickerView selectRow:cityIndex inComponent:1 animated:YES];
+    [self pickerView:self.pickerView didSelectRow:cityIndex inComponent:1];
     if(self.showProvinceAndCity == NO) {
-        index = [self.districtArr indexOfObject:district];
-        if(index >= self.districtArr.count || index < 0)    index = 0;
-        [self.pickerView selectRow:index inComponent:2 animated:YES];
-        [self pickerView:self.pickerView didSelectRow:index inComponent:2];
+        NSInteger districtIndex = 0;
+        for (int i = 0; i < self.dataArr[provinceIndex].cities[cityIndex].districts.count; i ++) {
+            YLAddressDistrictModel *model = self.dataArr[provinceIndex].cities[cityIndex].districts[i];
+            if([model.district isEqualToString:district]) {
+                districtIndex = i;
+                break;
+            }
+        }
+        [self.pickerView selectRow:districtIndex inComponent:2 animated:YES];
+        [self pickerView:self.pickerView didSelectRow:districtIndex inComponent:2];
     } else {
         self.address.district = @"";
     }
@@ -192,17 +254,17 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    if(component == 0)  return self.provinceArr.count;
-    if(component == 1)  return self.cityArr.count;
-    if(component == 2)  return self.districtArr.count;
+    if(component == 0)  return self.dataArr.count;
+    if(component == 1)  return self.dataArr[self.provinceIndex].cities.count;
+    if(component == 2)  return self.dataArr[self.provinceIndex].cities[self.cityIndex].districts.count;
     return 0;
     
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if(component == 0) return self.provinceArr[row];
-    if(component == 1) return self.cityArr[row];
-    if(component == 2) return self.districtArr[row];
+    if(component == 0) return self.dataArr[row].province;
+    if(component == 1) return self.dataArr[self.provinceIndex].cities[row].city;
+    if(component == 2) return self.dataArr[self.provinceIndex].cities[self.cityIndex].districts[row].district;
     return @"";
 }
 
@@ -210,25 +272,23 @@
     if(component == 0) {
         self.provinceIndex = row;
         self.cityIndex = 0;
-        self.address.province = self.provinceArr[row];
-        self.cityArr = [self.dataDict[self.provinceArr[row]] allKeys];
+        self.address.province = self.dataArr[row].province;
         [self.pickerView reloadComponent:1];
         [self.pickerView selectRow:0 inComponent:1 animated:YES];
         [self pickerView:pickerView didSelectRow:0 inComponent:1];
     } else if (component == 1) {
         self.cityIndex = row;
-        self.address.city = self.cityArr[row];
+        self.address.city = self.dataArr[self.provinceIndex].cities[row].city;
         if(self.showProvinceAndCity) {
             self.address.district = @"";
             return;
         }
-        self.districtArr = [self.dataDict[self.provinceArr[self.provinceIndex]][self.address.city] allKeys];
         [self.pickerView reloadComponent:2];
         [self.pickerView selectRow:0 inComponent:2 animated:YES];
         [self pickerView:pickerView didSelectRow:0 inComponent:2];
     } else if(component == 2) {
         self.districtIndex = row;
-        self.address.district = self.districtArr[row];
+        self.address.district = self.dataArr[self.provinceIndex].cities[self.cityIndex].districts[row].district;
     }
 }
 
@@ -266,8 +326,6 @@
 - (UIColor *)toolbarBackgroundColor {
     return self.toolBar.backgroundColor;
 }
-
-
 
 @end
 
