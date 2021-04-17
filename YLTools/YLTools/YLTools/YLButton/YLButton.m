@@ -12,6 +12,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.imageView.contentMode = UIViewContentModeCenter;
         self.imageViewRatio = 0.5;
         self.seperateGap = 3;
     }

@@ -116,8 +116,10 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    self.preTitle = self.dataArr[row];
-    self.index = row;
+    if(row < self.dataArr.count) {
+        self.preTitle = self.dataArr[row];
+        self.index = row;
+    }
 }
 
 #pragma mark - 取消
@@ -140,16 +142,18 @@
     [UIView animateWithDuration:0.2 animations:^{
         self.contentView.origin = CGPointMake(0, self.height - kCustomPickerContentViewHeight);
         self.bgView.alpha = 1;
-        if(self.dataArr.count == 0) return ;
-        for (int i = 0; i < self.dataArr.count; i ++) {
-            if(self.preTitle.isValidString && [self.preTitle isEqualToString:self.dataArr[i]]) {
-                [self.pickerView selectRow:i inComponent:0 animated:YES];
-                [self pickerView:self.pickerView didSelectRow:i inComponent:0];
-                return ;
-            }
-        }
-        [self pickerView:self.pickerView didSelectRow:0 inComponent:0];
     }];
+    
+    // 选中默认行
+    if(self.dataArr.count == 0) return ;
+    for (int i = 0; i < self.dataArr.count; i ++) {
+        if(self.preTitle.isValidString && [self.preTitle isEqualToString:self.dataArr[i]]) {
+            [self.pickerView selectRow:i inComponent:0 animated:YES];
+            [self pickerView:self.pickerView didSelectRow:i inComponent:0];
+            return ;
+        }
+    }
+    [self pickerView:self.pickerView didSelectRow:0 inComponent:0];
 }
 
 #pragma mark 隐藏

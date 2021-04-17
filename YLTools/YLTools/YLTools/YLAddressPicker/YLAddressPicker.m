@@ -76,6 +76,7 @@
 @property (nonatomic, assign) NSInteger cityIndex;
 @property (nonatomic, assign) NSInteger districtIndex;
 
+@property (nonatomic, strong) UIControl *bgView;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) UIButton *cancelBtn;
 @property (nonatomic, strong) UIButton *confirmBtn;
@@ -100,6 +101,12 @@
     self = [super initWithFrame:frame];
     if(self){
         self.backgroundColor = ClearColor;
+        
+        self.bgView = [[UIControl alloc] init];
+        self.bgView.backgroundColor = kAddressPickerBackgroundColor;
+        [self.bgView addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.bgView];
+        
         self.pickerView = [[UIPickerView alloc] init];
         self.pickerView.delegate = self;
         self.pickerView.dataSource = self;
@@ -131,6 +138,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    self.bgView.frame = self.bounds;
     self.toolBar.frame = CGRectMake(0, self.height, self.width, 40);
     self.pickerView.frame = CGRectMake(0, self.height + self.toolBar.height, self.width, 200);
     self.cancelBtn.frame = CGRectMake(0, 0, 60, self.toolBar.height);
@@ -206,16 +214,18 @@
     pickerView.addressTmp = address;
     pickerView.showProvinceAndCity = YES;
     [keyWindow addSubview:pickerView];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [pickerView show];
-    });
+    [pickerView setNeedsLayout];
+    [pickerView layoutIfNeeded];
+    [pickerView show];
     return pickerView;
 }
 
 - (void)show {
+    self.bgView.alpha = 0;
     [UIView animateWithDuration:0.2 animations:^{
         self.pickerView.bottom = self.height;
         self.toolBar.bottom = self.pickerView.top;
+        self.bgView.alpha = 1;
     }];
 }
 
@@ -223,6 +233,7 @@
     [UIView animateWithDuration:0.2 animations:^{
         self.pickerView.top = self.height + self.toolBar.height;
         self.toolBar.bottom = self.pickerView.top;
+        self.bgView.alpha = 0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
