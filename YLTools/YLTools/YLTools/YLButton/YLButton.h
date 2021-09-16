@@ -21,13 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 布局方式  */
 @property (nonatomic, assign) YLButtonLayoutMode layoutMode;
+/// 图片的大小, 默认, 设置 imageEdgeInsets和titleEdgeInsets来改变上下左右的间距
+@property (nonatomic, assign) CGSize imgViewSize;
 
-/**  图片占比 (上下布局为 高度,  左右布局为宽度)  default = 0.5 */
-@property (nonatomic, assign) CGFloat imageViewRatio;
-
-/// 图片和文字的间距, default  = 3
-@property (nonatomic, assign) CGFloat seperateGap;
-
+- (instancetype)initWithLayout:(YLButtonLayoutMode)layout imgViewSize:(CGSize)size;
++ (instancetype)buttonWithLayout:(YLButtonLayoutMode)layout imgViewSize:(CGSize)size;
 
 @end
 

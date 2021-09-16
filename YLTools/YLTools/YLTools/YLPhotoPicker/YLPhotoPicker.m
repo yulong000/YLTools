@@ -81,7 +81,7 @@
             UIAlertAction *sure = [UIAlertAction actionWithTitle:@"设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
                 if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                    [[UIApplication sharedApplication] openURL:url];
+                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
                 }
             }];
             [alert addAction:sure];
@@ -222,10 +222,11 @@
     if(photoMode.type == HXPhotoModelMediaTypePhoto) {
         __block UIImage *image = nil;
         PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-        options.resizeMode = PHImageRequestOptionsDeliveryModeOpportunistic;
+        options.resizeMode = PHImageRequestOptionsResizeModeNone;
+        options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
         options.synchronous = YES;
         options.networkAccessAllowed = YES;
-        [[PHCachingImageManager defaultManager] requestImageForAsset:photoMode.asset targetSize:size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        [[PHCachingImageManager defaultManager] requestImageForAsset:photoMode.asset targetSize:size contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
             if(result) {
                 image = result;
             }

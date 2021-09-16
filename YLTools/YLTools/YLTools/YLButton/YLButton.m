@@ -12,11 +12,24 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.imageView.contentMode = UIViewContentModeCenter;
-        self.imageViewRatio = 0.5;
-        self.seperateGap = 3;
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        self.titleLabel.adjustsFontSizeToFitWidth = NO;
+        self.titleLabel.font = [UIFont systemFontOfSize:13];
+        self.layoutMode = YLButtonLayoutModeDefault;
     }
     return self;
+}
+
+- (instancetype)initWithLayout:(YLButtonLayoutMode)layout imgViewSize:(CGSize)size {
+    if(self = [super init]) {
+        self.layoutMode = layout;
+        self.imgViewSize = size;
+    }
+    return self;
+}
+
++ (instancetype)buttonWithLayout:(YLButtonLayoutMode)layout imgViewSize:(CGSize)size {
+    return [[YLButton alloc] initWithLayout:layout imgViewSize:size];
 }
 
 - (void)setLayoutMode:(YLButtonLayoutMode)layoutMode {
@@ -41,14 +54,17 @@
     [self setNeedsLayout];
 }
 
-- (void)setImageViewRatio:(CGFloat)imageViewRatio {
-    _imageViewRatio = imageViewRatio;
+- (void)setImgViewSize:(CGSize)imgViewSize {
+    _imgViewSize = imgViewSize;
     [self setNeedsLayout];
 }
 
-- (void)setSeperateGap:(CGFloat)seperateGap {
-    _seperateGap = seperateGap;
-    [self setNeedsLayout];
+- (CGFloat)insetsWidth {
+    return self.imageEdgeInsets.left + self.imageEdgeInsets.right + self.titleEdgeInsets.left + self.titleEdgeInsets.right;
+}
+
+- (CGFloat)insetsHeight {
+    return self.imageEdgeInsets.top + self.imageEdgeInsets.bottom + self.titleEdgeInsets.top + self.titleEdgeInsets.bottom;
 }
 
 - (CGRect)titleRectForContentRect:(CGRect)contentRect {
@@ -56,30 +72,30 @@
     switch (self.layoutMode) {
         case YLButtonLayoutModeDefault: {
             height = contentRect.size.height;
-            width =  contentRect.size.width * (1 - self.imageViewRatio) - self.seperateGap;
-            x = contentRect.size.width - width;
+            width = contentRect.size.width - self.imgViewSize.width - [self insetsWidth];
+            x = self.imageEdgeInsets.left + self.imageEdgeInsets.right + self.imgViewSize.width + self.titleEdgeInsets.left;
             y = 0;
         }
             break;
         case YLButtonLayoutModeImageViewRight: {
             height = contentRect.size.height;
-            width =  contentRect.size.width * (1 - self.imageViewRatio) - self.seperateGap;
-            x = 0;
+            width = contentRect.size.width - self.imgViewSize.width - [self insetsWidth];
+            x = self.titleEdgeInsets.left;
             y = 0;
         }
             break;
         case YLButtonLayoutModeImageViewTop: {
-            height = contentRect.size.height * (1 - self.imageViewRatio) - self.seperateGap;
+            height = contentRect.size.height - self.imgViewSize.height - [self insetsHeight];
             width = contentRect.size.width;
             x = 0;
-            y = contentRect.size.height - height;
+            y = self.imageEdgeInsets.top + self.imgViewSize.height + self.imageEdgeInsets.bottom + self.titleEdgeInsets.top;
         }
             break;
         case YLButtonLayoutModeImageViewBottom: {
-            height = contentRect.size.height * (1 - self.imageViewRatio) - self.seperateGap;
+            height = contentRect.size.height - self.imgViewSize.height - [self insetsHeight];
             width = contentRect.size.width;
             x = 0;
-            y = 0;
+            y = self.titleEdgeInsets.top;
         }
             break;
         default:
@@ -89,39 +105,32 @@
 }
 
 - (CGRect)imageRectForContentRect:(CGRect)contentRect {
-    CGFloat width, height, x, y;
+    CGFloat x, y;
     switch (self.layoutMode) {
         case YLButtonLayoutModeDefault: {
-            height = contentRect.size.height;
-            width = contentRect.size.width * self.imageViewRatio;
-            x = y = 0;
+            x = self.imageEdgeInsets.left;
+            y = (self.frame.size.height - self.imgViewSize.height) / 2;
         }
             break;
         case YLButtonLayoutModeImageViewRight: {
-            height = contentRect.size.height;
-            width = contentRect.size.width * self.imageViewRatio;
-            x = contentRect.size.width - width;
-            y = 0;
+            x = contentRect.size.width - self.imageEdgeInsets.right - self.imgViewSize.width;
+            y = (self.frame.size.height - self.imgViewSize.height) / 2;
         }
             break;
         case YLButtonLayoutModeImageViewTop: {
-            height = contentRect.size.height * self.imageViewRatio;
-            width = contentRect.size.width;
-            x = 0;
-            y = 0;
+            x = (self.frame.size.width - self.imgViewSize.width) / 2;
+            y = self.imageEdgeInsets.top;
         }
             break;
         case YLButtonLayoutModeImageViewBottom: {
-            height = contentRect.size.height * self.imageViewRatio;
-            width = contentRect.size.width;
-            x = 0;
-            y = contentRect.size.height - height;
+            x = (self.frame.size.width - self.imgViewSize.width) / 2;
+            y = contentRect.size.height - self.imageEdgeInsets.bottom - self.imgViewSize.height;
         }
             break;
         default:
             break;
     }
-    return CGRectMake(x, y, width, height);
+    return CGRectMake(x, y, self.imgViewSize.width, self.imgViewSize.height);
 }
 
 @end
