@@ -52,6 +52,7 @@
 		006A982A243B1E2E000CB451 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A9829243B1E2E000CB451 /* main.m */; };
 		006A9834243B1E2E000CB451 /* YLToolsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A9833243B1E2E000CB451 /* YLToolsTests.m */; };
 		006A983F243B1E2E000CB451 /* YLToolsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A983E243B1E2E000CB451 /* YLToolsUITests.m */; };
+		00DCDF3B26FC994200E9AEA3 /* YLWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DCDF3926FC994200E9AEA3 /* YLWaterFlowLayout.m */; };
 		00EBB4D5248751D50053CB7D /* Address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00EBB4D4248751D50053CB7D /* Address.plist */; };
 		07E32C8A5FF07931DF25227E /* libPods-YLTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB49B665EB1068212624D017 /* libPods-YLTools.a */; };
 /* End PBXBuildFile section */
@@ -165,6 +166,8 @@
 		006A983A243B1E2E000CB451 /* YLToolsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YLToolsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		006A983E243B1E2E000CB451 /* YLToolsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLToolsUITests.m; sourceTree = "<group>"; };
 		006A9840243B1E2E000CB451 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00DCDF3926FC994200E9AEA3 /* YLWaterFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLWaterFlowLayout.m; sourceTree = "<group>"; };
+		00DCDF3A26FC994200E9AEA3 /* YLWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLWaterFlowLayout.h; sourceTree = "<group>"; };
 		00EBB4D4248751D50053CB7D /* Address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Address.plist; sourceTree = "<group>"; };
 		1AB7B212A73928ABDFB7A287 /* Pods-YLTools.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLTools.release.xcconfig"; path = "Target Support Files/Pods-YLTools/Pods-YLTools.release.xcconfig"; sourceTree = "<group>"; };
 		ACEC3FC55856B8D19269EA60 /* Pods-YLTools.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLTools.debug.xcconfig"; path = "Target Support Files/Pods-YLTools/Pods-YLTools.debug.xcconfig"; sourceTree = "<group>"; };
@@ -200,6 +203,7 @@
 		00310A77244944CF00592F90 /* YLTools */ = {
 			isa = PBXGroup;
 			children = (
+				00DCDF3826FC994200E9AEA3 /* YLWaterFlowLayout */,
 				00310AC02449551700592F90 /* YLPaymentTools */,
 				00310ABC244954D100592F90 /* YLWeakTimer */,
 				00310AB82449548400592F90 /* YLDatePicker */,
@@ -625,6 +629,15 @@
 			path = YLToolsUITests;
 			sourceTree = "<group>";
 		};
+		00DCDF3826FC994200E9AEA3 /* YLWaterFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				00DCDF3A26FC994200E9AEA3 /* YLWaterFlowLayout.h */,
+				00DCDF3926FC994200E9AEA3 /* YLWaterFlowLayout.m */,
+			);
+			path = YLWaterFlowLayout;
+			sourceTree = "<group>";
+		};
 		18DFAA8ABC703F76C8F0C014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,6 +859,7 @@
 				006A9819243B1E2C000CB451 /* AppDelegate.m in Sources */,
 				00310AB32449539200592F90 /* YLSexPicker.m in Sources */,
 				00310A8A2449492400592F90 /* YLCornerView.m in Sources */,
+				00DCDF3B26FC994200E9AEA3 /* YLWaterFlowLayout.m in Sources */,
 				00310AAF2449534300592F90 /* YLDashLineView.m in Sources */,
 				00310B152449565500592F90 /* NetworkDemoVC.m in Sources */,
 				00310B0F2449565500592F90 /* AudioPlayDemoVC.m in Sources */,
