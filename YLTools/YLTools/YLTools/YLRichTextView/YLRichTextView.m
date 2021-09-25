@@ -8,10 +8,9 @@
 
 #import "YLRichTextView.h"
 
-@interface YLRichTextView () <UIWebViewDelegate>
+@interface YLRichTextView () <WKUIDelegate, WKNavigationDelegate>
 
-@property (nonatomic, strong) UIWebView *webView;
-/**  是否完成加载  */
+@property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, assign) BOOL finish;
 
 
@@ -21,21 +20,9 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
-        self.webView.scrollView.scrollEnabled = NO;
-        self.webView.scrollView.showsHorizontalScrollIndicator = NO;
-        self.webView.scrollView.showsVerticalScrollIndicator = NO;
-        self.webView.scrollView.bounces = NO;
-        self.webView.userInteractionEnabled = NO;
-        self.webView.delegate = self;
-        self.webView.scalesPageToFit = YES;
-        self.webView.backgroundColor = ClearColor;
-        if (@available(iOS 11.0, *)) {
-            self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        [self.webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+        self.clipsToBounds = YES;
+        self.autoHeight = YES;
         [self addSubview:self.webView];
-        
     }
     return self;
 }
@@ -43,39 +30,106 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.webView.width = self.width;
-}
-
-- (void)dealloc {
-    [self.webView.scrollView removeObserver:self forKeyPath:@"contentSize"];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if([keyPath isEqualToString:@"contentSize"] && self.finish) {
-        [self refreshHeight];
+    if(self.autoHeight == NO) {
+        self.webView.height = self.height;
     }
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust='220%'";
-    [self.webView stringByEvaluatingJavaScriptFromString:str];
-    self.finish = YES;
-    [self refreshHeight];
+- (void)setAutoHeight:(BOOL)autoHeight {
+    _autoHeight = autoHeight;
+    self.webView.scrollView.scrollEnabled = !autoHeight;
 }
 
-- (void)refreshHeight {
-    if(self.webView.height == self.webView.scrollView.contentSize.height) return;
-    self.webView.height = self.webView.scrollView.contentSize.height;
-    if(self.heightChangedBlock) {
-        self.heightChangedBlock(self.webView.height, self);
+#pragma mark 加载完毕,计算高度
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    __weak typeof(self) weakSelf = self;
+    [webView evaluateJavaScript:@"document.body.offsetHeight;" completionHandler:^(NSNumber *height, NSError * _Nullable error) {
+        if(weakSelf.autoHeight == NO)   return;
+        weakSelf.webView.height = height.floatValue + 20;
+        if(weakSelf.heightChangedBlock) {
+            weakSelf.heightChangedBlock(weakSelf.webView.height, weakSelf);
+        }
+    }];
+    
+    [webView evaluateJavaScript:@"document.documentElement.style.webkitTouchCallout='none';" completionHandler:nil];   // 禁止长按弹窗
+    [webView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='none';"completionHandler:nil];      // 禁止选中
+}
+
+#pragma mark 根据WebView对于即将跳转的HTTP请求头信息和相关信息来决定是否跳转
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    NSURL *url = navigationAction.request.URL;
+    YLLog(@"富文本 点击了链接 : %@", url.absoluteString);
+    if([url.absoluteString hasPrefix:@"tel://"] ||
+       [url.absoluteString hasPrefix:@"sms://"] ||
+       [url.absoluteString hasPrefix:@"mailto://"]) {
+        // 拨打电话,发送短信,发送邮件
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }
+    decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+#pragma mark 在新的页面中打开
+- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
+    NSURL *url = navigationAction.request.URL;
+    YLLog(@"新窗口打开链接 : %@", url.absoluteString);
+    if(url.absoluteString.length) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    }
+    return nil;
+}
+
+#pragma mark 根据客户端受到的服务器响应头以及response相关信息来决定是否可以跳转
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
+    NSString * urlStr = navigationResponse.response.URL.absoluteString;
+    YLLog(@"当前跳转地址：%@",urlStr);
+    //允许跳转
+    decisionHandler(WKNavigationResponsePolicyAllow);
+}
+
+- (void)setRichText:(NSString *)richText {
+    if(richText && [_richText isEqualToString:richText] == NO) {
+        _richText = [richText copy];
+        [self.webView loadHTMLString:_richText baseURL:nil];
     }
 }
 
-- (void)setContent:(NSString *)content {
-    NSString *htmlStr = [NSString stringWithFormat:@"<div style=\"font-size:20px;line-height:2.0 !important\">%@</div>", content];
-    if([_content isEqualToString:htmlStr] == NO) {
-        _content = [htmlStr copy];
-        [self.webView loadHTMLString:_content baseURL:nil];
+- (WKWebView *)webView {
+    if(_webView == nil) {
+        WKPreferences *preferences = [[WKPreferences alloc] init];
+        preferences.javaScriptEnabled = YES;
+        preferences.javaScriptCanOpenWindowsAutomatically = YES;
+        [preferences setValue:@(YES) forKey:@"allowFileAccessFromFileURLs"];
+        
+        // 禁止缩放
+        NSString *injectionJSString = @"var script = document.createElement('meta');"
+        "script.name = 'viewport';"
+        "script.content=\"width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no\";"
+        "document.getElementsByTagName('head')[0].appendChild(script);";
+        WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:injectionJSString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+        WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+        [wkUController addUserScript:wkUScript];
+    
+        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+        config.allowsInlineMediaPlayback = YES;
+        config.suppressesIncrementalRendering = YES;
+        config.preferences = preferences;
+        config.userContentController = wkUController;
+        if(@available(iOS 10.0, *)) {
+            config.mediaTypesRequiringUserActionForPlayback = true;
+        }
+        _webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
+        _webView.UIDelegate = self;
+        _webView.navigationDelegate = self;
+        _webView.autoresizesSubviews = YES;
+        _webView.scrollView.scrollEnabled = !self.autoHeight;
+        _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        if (@available(iOS 11.0, *)) {
+            _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
     }
+    return _webView;
 }
 
 @end

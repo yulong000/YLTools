@@ -24,6 +24,7 @@ typedef  void(^YLSexPickerHandler)(YLPersonSex sex);
 @property (nonatomic, strong) UIColor *toolbarBackgroundColor;
 @property (nonatomic, strong) UIColor *cancelButtonTitleColor;
 @property (nonatomic, strong) UIColor *confirmButtonTitleColor;
+@property (nonatomic, strong) UIColor *titleColor;
 
 + (instancetype)showSexPickerWithSex:(YLPersonSex)sex handler:(YLSexPickerHandler)handler;
 

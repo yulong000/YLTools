@@ -102,7 +102,7 @@
         } success:^(NSDictionary * _Nonnull resp) {
             // 下载成功,开始播放
             [weakSelf play];
-        } failure:^(NSString * _Nonnull error) {
+        } failure:^(NSString * _Nonnull error, int errorCode) {
             
         }];
     }

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^YLNetworkSuccessHandler)(NSDictionary *resp);
 
 /**  请求失败  */
-typedef void (^YLNetworkFailureHandler)(NSString *error);
+typedef void (^YLNetworkFailureHandler)(NSString *error, int errorCode);
 
 /**  下载文件进度  */
 typedef void (^YLNetworkQownloadHandler)(float percent);

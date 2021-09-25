@@ -121,6 +121,10 @@ typedef void (^YLCameraVideoPickerResultHandler)(NSURL *cameraVideoUrl);
 + (nullable UIImage *)getImageWithMode:(HXPhotoModel*)photoMode size:(CGSize)size;
 
 
+/// 获取本地视频的URL
+/// @param photoMode 视频模型
++ (nullable NSURL *)getVideoUrlWithMode:(HXPhotoModel *)photoMode;
+
 
 /**
  获取拍摄的缓存视频的尺寸

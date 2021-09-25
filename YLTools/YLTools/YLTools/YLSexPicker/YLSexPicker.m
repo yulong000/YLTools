@@ -12,6 +12,7 @@
 #define kSexPickerToolbarBackgroundColor   [UIColor colorWithRed:66.0 / 255 green:155.0 / 255 blue:277.0 / 255 alpha:1]
 #define kSexPickerCancelButtonTitleColor   [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
 #define kSexPickerConfirmButtonTitleColor  [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
+#define kSexPickerTitleColor               [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
 #define kSexPickerContentViewHeight        ([UIScreen mainScreen].bounds.size.height / 3)
 
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) UIButton *cancelBtn;
 @property (nonatomic, strong) UIButton *confirmBtn;
+@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *toolBar;
 
 @property (nonatomic, assign) YLPersonSex sex;
@@ -33,7 +35,8 @@
 @implementation YLSexPicker
 @synthesize cancelButtonTitleColor  = _cancelButtonTitleColor,
             confirmButtonTitleColor = _confirmButtonTitleColor,
-            toolbarBackgroundColor  = _toolbarBackgroundColor;
+            toolbarBackgroundColor  = _toolbarBackgroundColor,
+            titleColor = _titleColor;
 
 + (instancetype)showSexPickerWithSex:(YLPersonSex)sex handler:(YLSexPickerHandler)handler {
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
@@ -77,6 +80,13 @@
         [self.confirmBtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
         [self.toolBar addSubview:self.confirmBtn];
         
+        self.titleLabel = [[UILabel alloc] init];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        self.titleLabel.textColor = kSexPickerTitleColor;
+        self.titleLabel.text = @"选择性别";
+        [self.toolBar addSubview:self.titleLabel];
+        
         [self.contentView addSubview:self.pickerView];
         
         __weak typeof(self) weakSelf = self;
@@ -95,6 +105,7 @@
     self.pickerView.frame = CGRectMake(0, self.toolBar.height, self.contentView.width, self.contentView.height - self.toolBar.height);
     self.cancelBtn.frame = CGRectMake(0, 0, 60, self.toolBar.height);
     self.confirmBtn.frame = CGRectMake(self.toolBar.width - self.cancelBtn.width, 0, self.cancelBtn.width, self.toolBar.height);
+    self.titleLabel.frame = CGRectMake(self.cancelBtn.right + 10, 0, self.confirmBtn.left - self.cancelBtn.right - 20, self.toolBar.height);
 }
 
 #pragma mark - pickerView
@@ -173,6 +184,13 @@
     }
 }
 
+- (void)setTitleColor:(UIColor *)titleColor {
+    if(titleColor) {
+        _titleColor = titleColor;
+        self.titleLabel.textColor = titleColor;
+    }
+}
+
 - (UIColor *)cancelButtonTitleColor {
     return [self.cancelBtn titleColorForState:UIControlStateNormal];
 }
@@ -183,6 +201,10 @@
 
 - (UIColor *)toolbarBackgroundColor {
     return self.toolBar.backgroundColor;
+}
+
+- (UIColor *)titleColor {
+    return self.titleLabel.textColor;
 }
 
 @end

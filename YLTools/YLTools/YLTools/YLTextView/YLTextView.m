@@ -22,7 +22,7 @@
     if (self = [super initWithFrame:frame]) {
         
         self.placeholderLabel = [[UILabel alloc] init];
-        self.placeholderLabel.textColor = [UIColor grayColor];
+        self.placeholderLabel.textColor = [UIColor colorWithRed:200.0 / 255 green:200.0 / 255 blue:200.0 / 255 alpha:1];
         [self addSubview:self.placeholderLabel];
         
         self.countLabel = [[UILabel alloc] init];
@@ -104,14 +104,6 @@
     return self.textView.text;
 }
 
-- (BOOL)becomeFirstResponder {
-    return [self.textView becomeFirstResponder];
-}
-
-- (BOOL)resignFirstResponder {
-    return [self.textView resignFirstResponder];
-}
-
 - (void)textViewDidChange:(UITextView *)textView {
     self.placeholderLabel.hidden = textView.text.length > 0;
     if(self.maxLength > 0 && textView.markedTextRange == nil) {
@@ -122,6 +114,18 @@
             self.countLabel.text = [NSString stringWithFormat:@"%d/%d", (int)textView.text.length, (int)self.maxLength];
         }
     }
+}
+
+- (BOOL)becomeFirstResponder {
+    return [self.textView becomeFirstResponder];
+}
+
+- (BOOL)resignFirstResponder {
+    return [self.textView resignFirstResponder];
+}
+
+- (BOOL)isFirstResponder {
+    return self.textView.isFirstResponder;
 }
 
 @end

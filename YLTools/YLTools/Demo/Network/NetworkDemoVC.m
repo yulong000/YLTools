@@ -28,7 +28,7 @@
     }];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     
-    self.textView = [[UITextView alloc] initWithFrame:CGRectMake(10, kNavTotalHeight, self.view.width - 20, 300)];
+    self.textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 100, self.view.width - 20, 300)];
     self.textView.editable = NO;
     self.textView.font = [UIFont systemFontOfSize:13];
     self.textView.layer.borderColor = [UIColor blackColor].CGColor;
@@ -100,7 +100,7 @@
         }
         
         
-    } failure:^(NSString * _Nonnull error) {
+    } failure:^(NSString * _Nonnull error, int errorCode) {
         YLLog(@"error : %@", error);
     }];
 }

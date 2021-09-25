@@ -9,11 +9,11 @@
 #import "YLPhotoPicker.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface YLPhotoPicker () <   HXAlbumListViewControllerDelegate,
-                                UINavigationControllerDelegate,
+@interface YLPhotoPicker () <   UINavigationControllerDelegate,
                                 UIImagePickerControllerDelegate,
                                 HXCustomCameraViewControllerDelegate,
-                                UIVideoEditorControllerDelegate>
+                                UIVideoEditorControllerDelegate,
+                                HXCustomNavigationControllerDelegate>
 
 @property (nonatomic, copy  ) YLCameraPhotoPickerResultHandler cameraPhotoHandler;
 @property (nonatomic, copy  ) YLCameraVideoPickerResultHandler cameraVideoHandler;
@@ -99,9 +99,11 @@
         case AVAuthorizationStatusNotDetermined: {
             // 请求权限
             [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    resultBlock(granted);
-                });
+                if(resultBlock) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        resultBlock(granted);
+                    });
+                }
             }];
         }
             break;
@@ -129,12 +131,15 @@
     config.movableCropBox = YES;
     config.movableCropBoxEditSize = YES;
     config.openCamera = YES;
+    config.albumShowMode = HXPhotoAlbumShowModePopup;
     manager.configuration = config;
-    HXAlbumListViewController *vc = [[HXAlbumListViewController alloc] init];
-    vc.delegate = [YLPhotoPicker shareInstacne];
-    vc.manager = manager;
-    HXCustomNavigationController *nav = [[HXCustomNavigationController alloc] initWithRootViewController:vc];
-    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+    HXCustomNavigationController *nav = [[HXCustomNavigationController alloc] initWithManager:manager delegate:[YLPhotoPicker shareInstacne] doneBlock:^(NSArray<HXPhotoModel *> * _Nullable allList, NSArray<HXPhotoModel *> * _Nullable photoList, NSArray<HXPhotoModel *> * _Nullable videoList, BOOL original, UIViewController * _Nullable viewController, HXPhotoManager * _Nullable manager) {
+        if([YLPhotoPicker shareInstacne].photoHandler && photoList.count) {
+            [YLPhotoPicker shareInstacne].photoHandler(photoList);
+        }
+    } cancelBlock:^(UIViewController * _Nullable viewController, HXPhotoManager * _Nullable manager) {
+        YLLog(@"取消选择图片");
+    }];
     [[YLPhotoPicker shareInstacne].presentVc presentViewController:nav animated:YES completion:nil];
 }
 
@@ -173,17 +178,20 @@
     HXPhotoManager *manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypeVideo];
     HXPhotoConfiguration *config = [[YLPhotoPicker shareInstacne] getPhotoUIConfig];
     config.videoMaxNum = maxVideosCount;
-    config.videoCanEdit = YES;
+    config.videoCanEdit = editalbe;
     config.videoMaximumSelectDuration = maxDuration;
     config.maxVideoClippingTime = maxDuration;
     config.openCamera = YES;
     config.singleSelected = maxVideosCount <= 1;
+    config.albumShowMode = HXPhotoAlbumShowModePopup;
     manager.configuration = config;
-    HXAlbumListViewController *vc = [[HXAlbumListViewController alloc] init];
-    vc.delegate = [YLPhotoPicker shareInstacne];
-    vc.manager = manager;
-    HXCustomNavigationController *nav = [[HXCustomNavigationController alloc] initWithRootViewController:vc];
-    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+    HXCustomNavigationController *nav = [[HXCustomNavigationController alloc] initWithManager:manager delegate:[YLPhotoPicker shareInstacne] doneBlock:^(NSArray<HXPhotoModel *> * _Nullable allList, NSArray<HXPhotoModel *> * _Nullable photoList, NSArray<HXPhotoModel *> * _Nullable videoList, BOOL original, UIViewController * _Nullable viewController, HXPhotoManager * _Nullable manager) {
+        if([YLPhotoPicker shareInstacne].videoHandler && videoList.count) {
+            [YLPhotoPicker shareInstacne].videoHandler(videoList);
+        }
+    } cancelBlock:^(UIViewController * _Nullable viewController, HXPhotoManager * _Nullable manager) {
+        YLLog(@"取消选择视频");
+    }];
     [[YLPhotoPicker shareInstacne].presentVc presentViewController:nav animated:YES completion:nil];
 }
 
@@ -222,11 +230,10 @@
     if(photoMode.type == HXPhotoModelMediaTypePhoto) {
         __block UIImage *image = nil;
         PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-        options.resizeMode = PHImageRequestOptionsResizeModeNone;
-        options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+        options.resizeMode = PHImageRequestOptionsResizeModeExact;
         options.synchronous = YES;
         options.networkAccessAllowed = YES;
-        [[PHCachingImageManager defaultManager] requestImageForAsset:photoMode.asset targetSize:size contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        [[PHCachingImageManager defaultManager] requestImageForAsset:photoMode.asset targetSize:size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
             if(result) {
                 image = result;
             }
@@ -246,6 +253,28 @@
         }
     }
     return arr;
+}
+
+
+#pragma mark 从视频模型中获取视频的URL
++ (NSURL *)getVideoUrlWithMode:(HXPhotoModel *)photoMode {
+    if(photoMode.asset) {
+        __block NSURL *videoUrl = nil;
+        dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+        PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+        options.version = PHVideoRequestOptionsVersionOriginal;
+        [[PHImageManager defaultManager] requestAVAssetForVideo:photoMode.asset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+            if([asset isKindOfClass:[AVURLAsset class]]) {
+                AVURLAsset *urlAsset = (AVURLAsset *)asset;
+                videoUrl = urlAsset.URL;
+            }
+            dispatch_semaphore_signal(sem);
+        }];
+        dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+        return videoUrl;
+    } else {
+        return photoMode.videoURL;
+    }
 }
 
 #pragma mark 获取本地视频的尺寸
@@ -277,27 +306,6 @@
     UIImage *videoImage = [[UIImage alloc] initWithCGImage:image];
     CGImageRelease(image);
     return videoImage;
-}
-
-
-#pragma mark HXAlbumListViewController delegate
-#pragma mark 选中了图片
-- (void)albumListViewController:(HXAlbumListViewController *)albumListViewController
-                 didDoneAllList:(NSArray<HXPhotoModel *> *)allList
-                         photos:(NSArray<HXPhotoModel *> *)photoList
-                         videos:(NSArray<HXPhotoModel *> *)videoList
-                       original:(BOOL)original {
-    if(self.photoHandler && photoList.count) {
-        self.photoHandler(photoList);
-    }
-    if(self.videoHandler && videoList.count) {
-        self.videoHandler(videoList);
-    }
-}
-
-#pragma mark 取消了选择
-- (void)albumListViewControllerDidCancel:(HXAlbumListViewController *)albumListViewController {
-    YLLog(@"取消了选择");
 }
 
 #pragma mark 相机代理
