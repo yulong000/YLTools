@@ -25,15 +25,27 @@
 - (instancetype)initWithLayoutStyle:(YLWaterFlowLayoutStyle)layoutStyle {
     if(self = [super init]) {
         self.layoutStyle = layoutStyle;
-        self.columnCount = 2;
-        self.columnMargin = 10;
-        self.rowMargin = 10;
-        self.sectionMargin = 10;
-        self.sectionEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-        self.sectionFooterSize = CGSizeZero;
-        self.sectionHeaderSize = CGSizeZero;
+        [self initialize];
     }
     return self;
+}
+
+- (instancetype)init {
+    if(self = [super init]) {
+        self.layoutStyle = YLWaterFlowLayoutStyleVerticalEqualWidth;
+        [self initialize];
+    }
+    return self;
+}
+
+- (void)initialize {
+    self.columnCount = 2;
+    self.columnMargin = 10;
+    self.rowMargin = 10;
+    self.sectionMargin = 10;
+    self.sectionEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+    self.sectionFooterSize = CGSizeZero;
+    self.sectionHeaderSize = CGSizeZero;
 }
 
 - (void)prepareLayout {

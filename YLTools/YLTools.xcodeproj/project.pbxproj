@@ -53,6 +53,7 @@
 		006A9834243B1E2E000CB451 /* YLToolsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A9833243B1E2E000CB451 /* YLToolsTests.m */; };
 		006A983F243B1E2E000CB451 /* YLToolsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A983E243B1E2E000CB451 /* YLToolsUITests.m */; };
 		00DCDF3B26FC994200E9AEA3 /* YLWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DCDF3926FC994200E9AEA3 /* YLWaterFlowLayout.m */; };
+		00DCDF5D26FEB46B00E9AEA3 /* WaterFlowDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DCDF5C26FEB46B00E9AEA3 /* WaterFlowDemoVC.m */; };
 		00EBB4D5248751D50053CB7D /* Address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00EBB4D4248751D50053CB7D /* Address.plist */; };
 		07E32C8A5FF07931DF25227E /* libPods-YLTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB49B665EB1068212624D017 /* libPods-YLTools.a */; };
 /* End PBXBuildFile section */
@@ -168,6 +169,8 @@
 		006A9840243B1E2E000CB451 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00DCDF3926FC994200E9AEA3 /* YLWaterFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLWaterFlowLayout.m; sourceTree = "<group>"; };
 		00DCDF3A26FC994200E9AEA3 /* YLWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLWaterFlowLayout.h; sourceTree = "<group>"; };
+		00DCDF5B26FEB46B00E9AEA3 /* WaterFlowDemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterFlowDemoVC.h; sourceTree = "<group>"; };
+		00DCDF5C26FEB46B00E9AEA3 /* WaterFlowDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterFlowDemoVC.m; sourceTree = "<group>"; };
 		00EBB4D4248751D50053CB7D /* Address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Address.plist; sourceTree = "<group>"; };
 		1AB7B212A73928ABDFB7A287 /* Pods-YLTools.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLTools.release.xcconfig"; path = "Target Support Files/Pods-YLTools/Pods-YLTools.release.xcconfig"; sourceTree = "<group>"; };
 		ACEC3FC55856B8D19269EA60 /* Pods-YLTools.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLTools.debug.xcconfig"; path = "Target Support Files/Pods-YLTools/Pods-YLTools.debug.xcconfig"; sourceTree = "<group>"; };
@@ -391,6 +394,7 @@
 		00310AC72449565400592F90 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				00DCDF5A26FEB44300E9AEA3 /* waterflow */,
 				00310AC82449565400592F90 /* TextView */,
 				00310ACB2449565400592F90 /* PhotoPicker */,
 				00310AD52449565400592F90 /* CustomPicker */,
@@ -638,6 +642,15 @@
 			path = YLWaterFlowLayout;
 			sourceTree = "<group>";
 		};
+		00DCDF5A26FEB44300E9AEA3 /* waterflow */ = {
+			isa = PBXGroup;
+			children = (
+				00DCDF5B26FEB46B00E9AEA3 /* WaterFlowDemoVC.h */,
+				00DCDF5C26FEB46B00E9AEA3 /* WaterFlowDemoVC.m */,
+			);
+			path = waterflow;
+			sourceTree = "<group>";
+		};
 		18DFAA8ABC703F76C8F0C014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -841,6 +854,7 @@
 				00310A9E2449508B00592F90 /* YLShareView.m in Sources */,
 				00310B162449565500592F90 /* TimerDemoVc.m in Sources */,
 				00310B132449565500592F90 /* DatePickerDemoVC.m in Sources */,
+				00DCDF5D26FEB46B00E9AEA3 /* WaterFlowDemoVC.m in Sources */,
 				00310A9624494B1E00592F90 /* YLAudioPlayer.m in Sources */,
 				00310B192449565500592F90 /* WeChatLoginDemoVC.m in Sources */,
 				00310AA22449519900592F90 /* YLLocationTools.m in Sources */,

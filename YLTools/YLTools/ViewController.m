@@ -43,14 +43,15 @@
                      @{@"title" : @"textView",   @"controller" : @"TextViewDemoVC"},
                      @{@"title" : @"圆角View",    @"controller" : @"CornerViewDemoVC"},
                      @{@"title" : @"自定义选择器",  @"controller" : @"CustomPickerDemoVC"},
-                     @{@"title" : @"富文本显示",   @"controller" : @"RichTextViewDemoVC"},];
+                     @{@"title" : @"富文本显示",   @"controller" : @"RichTextViewDemoVC"},
+                     @{@"title" : @"瀑布流",      @"controller" : @"WaterFlowDemoVC"},];
     }
     return _dataArr;
 }
 
 #pragma mark 创建talbeView
 - (UITableView *)createTableView {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     return tableView;

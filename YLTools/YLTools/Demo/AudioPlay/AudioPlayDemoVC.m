@@ -94,7 +94,7 @@
 #pragma mark 要手动停止播放
 - (void)dealloc {
     YLLog(@"AudioPlayDemoVC dealloc");
-    [self.player stop];
+    [_player stop];
 }
 
 @end

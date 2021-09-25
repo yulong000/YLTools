@@ -19,6 +19,8 @@ typedef NS_ENUM(NSInteger, YLWaterFlowLayoutStyle) {
 
 @protocol YLWaterFlowLayoutDelegate <NSObject>
 
+
+/// 返回item的大小，纵向时，width随便传，横向时height随便传
 - (CGSize)sizeForItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @optional
