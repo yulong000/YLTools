@@ -12,6 +12,7 @@
 #define kCustomPickerToolbarBackgroundColor   [UIColor colorWithRed:66.0 / 255 green:155.0 / 255 blue:277.0 / 255 alpha:1]
 #define kCustomPickerCancelButtonTitleColor   [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
 #define kCustomPickerConfirmButtonTitleColor  [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
+#define kCustomPickerTitleColor               [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
 #define kCustomPickerContentViewHeight        ([UIScreen mainScreen].bounds.size.height / 3)
 
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) UIButton *cancelBtn;
 @property (nonatomic, strong) UIButton *confirmBtn;
+@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *toolBar;
 
 @property (nonatomic, strong) NSArray *dataArr;
@@ -35,17 +37,32 @@
 @implementation YLCustomPicker
 @synthesize cancelButtonTitleColor  = _cancelButtonTitleColor,
             confirmButtonTitleColor = _confirmButtonTitleColor,
-            toolbarBackgroundColor  = _toolbarBackgroundColor;
+            toolbarBackgroundColor  = _toolbarBackgroundColor,
+            titleColor = _titleColor;
 
-+ (instancetype)showCustomPickerWithTitles:(NSArray *)titles selectTitle:(NSString *)title handler:(YLCustomPickerHandler)handler {
++ (instancetype)showCustomPickerWithTitle:(NSString *)title itemArr:(NSArray<NSString *> *)itemArr selectItem:(NSString *)item handler:(YLCustomPickerHandler)handler {
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     YLCustomPicker *picker = [[YLCustomPicker alloc] initWithFrame:keyWindow.bounds];
+    picker.titleLabel.text = title;
     picker.handler = handler;
-    picker.preTitle = title;
-    picker.dataArr = titles;
+    picker.preTitle = item;
+    picker.dataArr = itemArr;
     [keyWindow addSubview:picker];
     [picker show];
     return picker;
+}
+
++ (NSMutableArray *)itemsWithModelArr:(NSArray *)modelArr displayProperty:(NSString *)displayProperty {
+    NSMutableArray *arr = [NSMutableArray array];
+    if(displayProperty.length) {
+        for (NSObject *model in modelArr) {
+            NSString *value = [model valueForKey:displayProperty];
+            if(value && [value isKindOfClass:[NSString class]]) {
+                [arr addObject:value];
+            }
+        }
+    }
+    return arr;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -80,6 +97,12 @@
         [self.confirmBtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
         [self.toolBar addSubview:self.confirmBtn];
         
+        self.titleLabel = [[UILabel alloc] init];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        self.titleLabel.textColor = kCustomPickerTitleColor;
+        [self.toolBar addSubview:self.titleLabel];
+        
         [self.contentView addSubview:self.pickerView];
         
         
@@ -99,6 +122,7 @@
     self.pickerView.frame = CGRectMake(0, self.toolBar.height, self.contentView.width, self.contentView.height - self.toolBar.height);
     self.cancelBtn.frame = CGRectMake(0, 0, 60, self.toolBar.height);
     self.confirmBtn.frame = CGRectMake(self.toolBar.width - self.cancelBtn.width, 0, self.cancelBtn.width, self.toolBar.height);
+    self.titleLabel.frame = CGRectMake(self.cancelBtn.right + 10, 0, self.confirmBtn.left - self.cancelBtn.right - 20, self.toolBar.height);
 }
 
 #pragma mark - pickerView
@@ -128,7 +152,7 @@
 }
 #pragma mark 确定
 - (void)confirm {
-    if(self.handler) {
+    if(self.dataArr.count && self.handler) {
         self.handler(self.preTitle, self.index);
         YLLog(@"选择了 %d : %@", (int)self.index, self.preTitle);
     }
@@ -189,6 +213,13 @@
     }
 }
 
+- (void)setTitleColor:(UIColor *)titleColor {
+    if(titleColor) {
+        _titleColor = titleColor;
+        self.titleLabel.textColor = titleColor;
+    }
+}
+
 - (UIColor *)cancelButtonTitleColor {
     return [self.cancelBtn titleColorForState:UIControlStateNormal];
 }
@@ -201,5 +232,8 @@
     return self.toolBar.backgroundColor;
 }
 
+- (UIColor *)titleColor {
+    return self.titleLabel.textColor;
+}
 
 @end

@@ -10,19 +10,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^YLCustomPickerHandler)(NSString *title, NSInteger index);
+typedef void (^YLCustomPickerHandler)(NSString *item, NSInteger index);
 
 @interface YLCustomPicker : UIView
 
 @property (nonatomic, strong) UIColor *toolbarBackgroundColor;
 @property (nonatomic, strong) UIColor *cancelButtonTitleColor;
 @property (nonatomic, strong) UIColor *confirmButtonTitleColor;
+@property (nonatomic, strong) UIColor *titleColor;
 
-+ (instancetype)showCustomPickerWithTitles:(NSArray <NSString *> *)titles
-                               selectTitle:(NSString * _Nullable)title
++ (instancetype)showCustomPickerWithTitle:(NSString * _Nullable)title
+                                  itemArr:(NSArray <NSString *> *)itemArr
+                               selectItem:(NSString * _Nullable)item
                                    handler:(YLCustomPickerHandler _Nullable)handler;
 
-
++ (NSMutableArray *)itemsWithModelArr:(NSArray *)modelArr displayProperty:(NSString *)displayProperty;
 
 @end
 
