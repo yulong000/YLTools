@@ -12,6 +12,7 @@
 #define kAddressPickerToolbarBackgroundColor   [UIColor colorWithRed:66.0 / 255 green:155.0 / 255 blue:277.0 / 255 alpha:1]
 #define kAddressPickerCancelButtonTitleColor   [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
 #define kAddressPickerConfirmButtonTitleColor  [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
+#define kAddressPickerTitleColor               [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
 #define kAddressPickerContentViewHeight        ([UIScreen mainScreen].bounds.size.height / 3)
 
 #pragma mark - 省
@@ -77,9 +78,11 @@
 @property (nonatomic, assign) NSInteger districtIndex;
 
 @property (nonatomic, strong) UIControl *bgView;
+@property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) UIButton *cancelBtn;
 @property (nonatomic, strong) UIButton *confirmBtn;
+@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *toolBar;
 
 @property (nonatomic, strong) AddressModel *address;
@@ -95,17 +98,21 @@
 @implementation YLAddressPicker
 @synthesize cancelButtonTitleColor  = _cancelButtonTitleColor,
             confirmButtonTitleColor = _confirmButtonTitleColor,
-            toolbarBackgroundColor  = _toolbarBackgroundColor;
+            toolbarBackgroundColor  = _toolbarBackgroundColor,
+            titleColor = _titleColor;
 
-- (instancetype)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame];
-    if(self){
+- (instancetype)initWithFrame:(CGRect)frame {
+    if(self = [super initWithFrame:frame]) {
         self.backgroundColor = ClearColor;
         
         self.bgView = [[UIControl alloc] init];
         self.bgView.backgroundColor = kAddressPickerBackgroundColor;
         [self.bgView addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.bgView];
+        
+        self.contentView = [[UIView alloc] init];
+        self.contentView.backgroundColor = WhiteColor;
+        [self addSubview:self.contentView];
         
         self.pickerView = [[UIPickerView alloc] init];
         self.pickerView.delegate = self;
@@ -114,7 +121,7 @@
         
         self.toolBar = [[UIView alloc] init];
         self.toolBar.backgroundColor = kAddressPickerToolbarBackgroundColor;
-        [self addSubview:self.toolBar];
+        [self.contentView addSubview:self.toolBar];
         
         self.cancelBtn = [[UIButton alloc] init];
         [self.cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
@@ -128,7 +135,15 @@
         [self.confirmBtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
         [self.toolBar addSubview:self.confirmBtn];
         
-        [self addSubview:self.pickerView];
+        self.titleLabel = [[UILabel alloc] init];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        self.titleLabel.textColor = kAddressPickerTitleColor;
+        self.titleLabel.text = @"选择省/市/区";
+        [self.toolBar addSubview:self.titleLabel];
+        
+        [self.contentView addSubview:self.pickerView];
+        
         NSString *path = [[NSBundle mainBundle] pathForResource:@"Address" ofType:@"plist"];
         NSArray *arr = [NSArray arrayWithContentsOfFile:path];
         self.dataArr = [YLAddressProvinceModel mj_objectArrayWithKeyValuesArray:arr];
@@ -139,10 +154,12 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.bgView.frame = self.bounds;
-    self.toolBar.frame = CGRectMake(0, self.height, self.width, 40);
-    self.pickerView.frame = CGRectMake(0, self.height + self.toolBar.height, self.width, 200);
+    self.contentView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kAddressPickerContentViewHeight);
+    self.toolBar.frame = CGRectMake(0, 0, self.contentView.width, 40);
+    self.pickerView.frame = CGRectMake(0, self.toolBar.height, self.contentView.width, self.contentView.height - self.toolBar.height);
     self.cancelBtn.frame = CGRectMake(0, 0, 60, self.toolBar.height);
     self.confirmBtn.frame = CGRectMake(self.width - self.cancelBtn.width, 0, self.cancelBtn.width, self.toolBar.height);
+    self.titleLabel.frame = CGRectMake(self.cancelBtn.right + 10, 0, self.confirmBtn.left - self.cancelBtn.right - 20, self.toolBar.height);
 }
 
 - (AddressModel *)address {
@@ -201,38 +218,31 @@
     pickerView.handler = handler;
     pickerView.addressTmp = address;
     [keyWindow addSubview:pickerView];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [pickerView show];
-    });
-    return pickerView;
-}
-
-+ (instancetype)showProvinceAndCityPickerWithAddress:(AddressModel *)address handler:(YLAddressPickerHandler)handler {
-    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-    YLAddressPicker *pickerView = [[YLAddressPicker alloc] initWithFrame:keyWindow.bounds];
-    pickerView.handler = handler;
-    pickerView.addressTmp = address;
-    pickerView.showProvinceAndCity = YES;
-    [keyWindow addSubview:pickerView];
     [pickerView setNeedsLayout];
     [pickerView layoutIfNeeded];
     [pickerView show];
     return pickerView;
 }
 
++ (instancetype)showProvinceAndCityPickerWithAddress:(AddressModel *)address handler:(YLAddressPickerHandler)handler {
+    YLAddressPicker *pickerView = [self showAddressPickerWithAddress:address handler:handler];
+    pickerView.showProvinceAndCity = YES;
+    pickerView.titleLabel.text = @"选择省/市";
+    [pickerView.pickerView reloadAllComponents];
+    return pickerView;
+}
+
 - (void)show {
     self.bgView.alpha = 0;
     [UIView animateWithDuration:0.2 animations:^{
-        self.pickerView.bottom = self.height;
-        self.toolBar.bottom = self.pickerView.top;
+        self.contentView.bottom = kScreenHeight;
         self.bgView.alpha = 1;
     }];
 }
 
 - (void)hide {
     [UIView animateWithDuration:0.2 animations:^{
-        self.pickerView.top = self.height + self.toolBar.height;
-        self.toolBar.bottom = self.pickerView.top;
+        self.contentView.top = kScreenHeight;
         self.bgView.alpha = 0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
@@ -326,6 +336,13 @@
     }
 }
 
+- (void)setTitleColor:(UIColor *)titleColor {
+    if(titleColor) {
+        _titleColor = titleColor;
+        self.titleLabel.textColor = titleColor;
+    }
+}
+
 - (UIColor *)cancelButtonTitleColor {
     return [self.cancelBtn titleColorForState:UIControlStateNormal];
 }
@@ -336,6 +353,10 @@
 
 - (UIColor *)toolbarBackgroundColor {
     return self.toolBar.backgroundColor;
+}
+
+- (UIColor *)titleColor {
+    return self.titleLabel.textColor;
 }
 
 @end

@@ -18,6 +18,7 @@ typedef  void(^YLAddressPickerHandler)(AddressModel *address);
 @property (nonatomic, strong) UIColor *toolbarBackgroundColor;
 @property (nonatomic, strong) UIColor *cancelButtonTitleColor;
 @property (nonatomic, strong) UIColor *confirmButtonTitleColor;
+@property (nonatomic, strong) UIColor *titleColor;
 
 /**  选择省市区  */
 + (instancetype)showAddressPickerWithAddress:(AddressModel * _Nullable)address handler:(YLAddressPickerHandler _Nullable)handler;

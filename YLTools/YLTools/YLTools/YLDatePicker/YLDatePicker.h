@@ -10,12 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, YLDatePickerHandlerType) {
-    YLDatePickerHandlerTypeCancel,              // 取消
-    YLDatePickerHandlerTypeConfirm,             // 确定
-};
-
-typedef  void(^YLDatePickerHandler)(YLDatePickerHandlerType handlerType, NSDate *_Nullable date);
+typedef  void(^YLDatePickerHandler)(NSDate *date);
 
 @interface YLDatePicker : UIView
 
@@ -24,8 +19,26 @@ typedef  void(^YLDatePickerHandler)(YLDatePickerHandlerType handlerType, NSDate 
 @property (nonatomic, strong) UIColor *toolbarBackgroundColor;
 @property (nonatomic, strong) UIColor *cancelButtonTitleColor;
 @property (nonatomic, strong) UIColor *confirmButtonTitleColor;
+@property (nonatomic, strong) UIColor *titleColor;
 
-+ (instancetype)showDatePickerWithMode:(UIDatePickerMode)mode handler:(YLDatePickerHandler)handler;
++ (instancetype)showDatePickerWithMode:(UIDatePickerMode)mode
+                               handler:(YLDatePickerHandler)handler;
+
++ (instancetype)showDatePickerWithTitle:(nullable NSString *)title
+                             selectDate:(nullable NSDate *)selectDate
+                                handler:(YLDatePickerHandler)handler;
+
++ (instancetype)showDatePickerWithTitle:(nullable NSString *)title
+                                   mode:(UIDatePickerMode)mode
+                             selectDate:(nullable NSDate *)selectDate
+                                handler:(YLDatePickerHandler)handler;
+            
++ (instancetype)showDatePickerWithTitle:(nullable NSString *)title
+                                   mode:(UIDatePickerMode)mode
+                             selectDate:(nullable NSDate *)selectDate
+                                minDate:(nullable NSDate *)minDate
+                                maxDate:(nullable NSDate *)maxDate
+                                handler:(YLDatePickerHandler)handler;
 
 
 @end

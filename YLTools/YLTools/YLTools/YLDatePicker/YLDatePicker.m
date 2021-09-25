@@ -12,6 +12,7 @@
 #define kDatePickerToolbarBackgroundColor   [UIColor colorWithRed:66.0 / 255 green:155.0 / 255 blue:277.0 / 255 alpha:1]
 #define kDatePickerCancelButtonTitleColor   [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
 #define kDatePickerConfirmButtonTitleColor  [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
+#define kDatePickerTitleColor               [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
 #define kDatePickerContentViewHeight        ([UIScreen mainScreen].bounds.size.height / 3)
 
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) UIDatePicker *pickerView;
 @property (nonatomic, strong) UIButton *cancelBtn;
 @property (nonatomic, strong) UIButton *confirmBtn;
+@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *toolBar;
 
 @property (nonatomic, copy)   YLDatePickerHandler resultHandler;
@@ -31,12 +33,29 @@
 @implementation YLDatePicker
 @synthesize cancelButtonTitleColor  = _cancelButtonTitleColor,
             confirmButtonTitleColor = _confirmButtonTitleColor,
-            toolbarBackgroundColor  = _toolbarBackgroundColor;
+            toolbarBackgroundColor  = _toolbarBackgroundColor,
+            titleColor = _titleColor;
 
 + (instancetype)showDatePickerWithMode:(UIDatePickerMode)mode handler:(YLDatePickerHandler)handler {
+    return [self showDatePickerWithTitle:nil mode:mode selectDate:nil minDate:nil maxDate:nil handler:handler];
+}
+
++ (instancetype)showDatePickerWithTitle:(NSString *)title selectDate:(NSDate *)selectDate handler:(YLDatePickerHandler)handler {
+    return [self showDatePickerWithTitle:title mode:UIDatePickerModeDate selectDate:selectDate minDate:nil maxDate:nil handler:handler];
+}
+
++ (instancetype)showDatePickerWithTitle:(NSString *)title mode:(UIDatePickerMode)mode selectDate:(NSDate *)selectDate handler:(YLDatePickerHandler)handler {
+    return [self showDatePickerWithTitle:title mode:mode selectDate:selectDate minDate:nil maxDate:nil handler:handler];
+}
+
++ (instancetype)showDatePickerWithTitle:(NSString *)title mode:(UIDatePickerMode)mode selectDate:(NSDate *)selectDate minDate:(NSDate *)minDate maxDate:(NSDate *)maxDate handler:(YLDatePickerHandler)handler {
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     YLDatePicker *picker = [[YLDatePicker alloc] initWithFrame:keyWindow.bounds];
+    picker.titleLabel.text = title;
     picker.datePicker.datePickerMode = mode;
+    picker.datePicker.date = selectDate;
+    picker.datePicker.minimumDate = minDate;
+    picker.datePicker.maximumDate = maxDate;
     picker.resultHandler = handler;
     [keyWindow addSubview:picker];
     [picker show];
@@ -54,8 +73,9 @@
         [self addSubview:self.contentView];
         
         self.pickerView = [[UIDatePicker alloc] init];
+        if(@available(iOS 13.4, *)) self.pickerView.preferredDatePickerStyle = UIDatePickerStyleWheels;
         self.pickerView.backgroundColor = [UIColor whiteColor];
-        self.pickerView.timeZone = [NSTimeZone systemTimeZone];
+        self.pickerView.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
         
         self.toolBar = [[UIView alloc] init];
         self.toolBar.backgroundColor = kDatePickerToolbarBackgroundColor;
@@ -72,6 +92,12 @@
         [self.confirmBtn setTitleColor:kDatePickerConfirmButtonTitleColor forState:UIControlStateNormal];
         [self.confirmBtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
         [self.toolBar addSubview:self.confirmBtn];
+        
+        self.titleLabel = [[UILabel alloc] init];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        self.titleLabel.textColor = kDatePickerTitleColor;
+        [self.toolBar addSubview:self.titleLabel];
         
         [self.contentView addSubview:self.pickerView];
         
@@ -91,19 +117,17 @@
     self.pickerView.frame = CGRectMake(0, self.toolBar.height, self.contentView.width, self.contentView.height - self.toolBar.height);
     self.cancelBtn.frame = CGRectMake(0, 0, 60, self.toolBar.height);
     self.confirmBtn.frame = CGRectMake(self.toolBar.width - self.cancelBtn.width, 0, self.cancelBtn.width, self.toolBar.height);
+    self.titleLabel.frame = CGRectMake(self.cancelBtn.right + 10, 0, self.confirmBtn.left - self.cancelBtn.right - 20, self.toolBar.height);
 }
 
 #pragma mark 取消
 - (void)cancel {
-    if(self.resultHandler) {
-        self.resultHandler(YLDatePickerHandlerTypeCancel, nil);
-    }
     [self hide];
 }
 #pragma mark 确定
 - (void)confirm {
     if(self.resultHandler) {
-        self.resultHandler(YLDatePickerHandlerTypeConfirm, self.pickerView.date);
+        self.resultHandler(self.pickerView.date);
         YLLog(@"日期选择 : %@", self.pickerView.date);
     }
     [self hide];
@@ -157,6 +181,13 @@
     }
 }
 
+- (void)setTitleColor:(UIColor *)titleColor {
+    if(titleColor) {
+        _titleColor = titleColor;
+        self.titleLabel.textColor = titleColor;
+    }
+}
+
 - (UIColor *)cancelButtonTitleColor {
     return [self.cancelBtn titleColorForState:UIControlStateNormal];
 }
@@ -167,6 +198,10 @@
 
 - (UIColor *)toolbarBackgroundColor {
     return self.toolBar.backgroundColor;
+}
+
+- (UIColor *)titleColor {
+    return self.titleLabel.textColor;
 }
 
 @end
