@@ -1,13 +1,20 @@
-<img src="http://thyrsi.com/t6/669/1549792194x1822611383.png" width="800" height="130">
+<img src="http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/chartle/show_tip_2.png">
 
-[![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat
-             )](https://developer.apple.com/iphone/index.action)
-[![Pod Version](http://img.shields.io/cocoapods/v/HXPhotoPicker.svg?style=flat)](http://cocoadocs.org/docsets/HXPhotoPicker/)
-[![Language](http://img.shields.io/badge/language-ObjC-brightgreen.svg?style=flat)](https://developer.apple.com/Objective-C)
-[![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
+<p align="center">
+<a href="https://github.com/SilenceLove/HXPhotoPicker"><img src="https://travis-ci.org/SilenceLove/HXPhotoPicker.svg?branch=master"></a>
+<a href="https://github.com/SilenceLove/HXPhotoPicker"><img src="https://badgen.net/badge/icon/iOS%208.0%2B?color=cyan&icon=apple&label"></a>
+<a href="https://github.com/SilenceLove/HXPhotoPicker"><img src="http://img.shields.io/cocoapods/v/HXPhotoPicker.svg?logo=cocoapods&logoColor=ffffff"></a>
+<a href="https://github.com/SilenceLove/HXPhotoPicker"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
+<a href="https://developer.apple.com/Objective-C"><img src="http://img.shields.io/badge/language-ObjC-red.svg?logo=common-workflow-language"></a>
+<a href="http://mit-license.org"><img src="http://img.shields.io/badge/license-MIT-333333.svg?logo=letterboxd&logoColor=ffffff"></a>
+</p>
 
-<img src="http://thyrsi.com/t6/669/1549791821x1822611383.png" width="208" height="404"><img src="http://thyrsi.com/t6/669/1549791987x1822611383.png" width="208" height="404"><img src="http://thyrsi.com/t6/669/1549792014x1822611383.png" width="208" height="404"><img src="http://thyrsi.com/t6/669/1549792030x1822611383.png" width="208" height="404">
-<img src="http://thyrsi.com/t6/669/1549792043x1822611383.png" width="208" height="404"><img src="http://thyrsi.com/t6/669/1549792055x1822611383.png" width="208" height="404"><img src="http://thyrsi.com/t6/669/1549792069x1822611383.png" width="208" height="404"><img src="http://thyrsi.com/t6/669/1549792082x1822611383.png" width="208" height="404">
+> [Swift版本(支持图片滤镜、视频添加背景音乐)](https://github.com/SilenceLove/HXPHPicker)
+
+| <img src="http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/chartle/show_tag_4.PNG"> | <img src="http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/chartle/sample_graph_1.PNG"> | <img src="http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/chartle/sample_graph_2.PNG"> |
+| ------ | ------ | ------ |
+| <img src="http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/chartle/show_tag_3_2.PNG"> | <img src="http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/chartle/sample_graph_8.PNG"> | <img src="http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/chartle/sample_graph_6.PNG"> |
+| <img src="http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/chartle/show_gif_tag_1.gif"> | <img src="http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/chartle/show_gif_tag_2.gif"> | <img src="http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/chartle/show_gif_tag_3.gif"> |
 
 ## 目录
 * [特性](#特性)
@@ -20,13 +27,13 @@
     * [使用HXPhotoView选照片后自动布局](#Demo2)
     * [保存草稿](#如何保存草稿)
     * [添加网络/本地图片、视频](#如何添加网络/本地图片、视频)
-    * [相关问题](#相关问题)
-    * [更多请下载工程查看](#更多) 
-* [更新记录](#更新历史)
+    * [更多请下载工程查看](#更多)
+* [相关问题](#相关问题)
+* [更新记录](#更新记录)
 * [后续计划](#后续计划)
 * [更多](#更多)
 
-## <a id="特性"></a> 一.  特性 - Features
+## <a id="特性"></a> 特性 - Features
 
 - [x] 查看、选择GIF图片
 - [x] 照片、视频可同时多选/原图
@@ -34,9 +41,9 @@
 - [x] 长按拖动改变顺序
 - [x] 自定义相机拍照、录制视频
 - [x] 自定义转场动画
-- [x] 查看、选择LivePhoto IOS9.1以上才有用
+- [x] 查看、选择LivePhoto iOS9.1以上才有用
 - [x] 浏览网络图片、网络视频
-- [x] 自定义裁剪图片
+- [x] 仿微信编辑图片功能
 - [x] 自定义裁剪视频时长
 - [x] 传入本地图片、视频
 - [x] 在线下载iCloud上的资源
@@ -47,36 +54,236 @@
 - [x] 支持暗黑模式
 - [x] 支持横向布局
 - [x] 支持Xib和Masonry布局
+- [x] 支持自定义item的大小
+- [x] 支持滑动手势选择
 
-## <a id="安装"></a> 二.  安装 - Installation
+## <a id="安装"></a> 安装 - Installation
 
-- Cocoapods：```pod 'HXPhotoPicker', '~> 2.4.2'```搜索不到库或最新版请执行```pod repo update``` ```rm ~/Library/Caches/CocoaPods/search_index.json```
-- Pod分三个版本:```pod 'HXPhotoPicker' 不依赖其他第三方库```、```pod 'HXPhotoPicker_SD' 只依赖SDWebImage```、```pod 'HXPhotoPicker_YY' 只依赖YYWebImage```
-- 手动导入：将项目中的“HXPhotoPicker”文件夹拖入项目中
-- 如果想要加载网络gif图片请使用```YYWebImage```
-- 使用前导入头文件 "HXPhotoPicker.h"
+<details>
+   <summary><strong>CocoaPods</strong></summary>
 
-## <a id="要求"></a> 三.  要求 - Requirements
+``` ruby
+# 将以下内容添加到您的Podfile中：
+# 不使用网络图片功能
+pod 'HXPhotoPicker', '~> 3.2.3'
+  
+# 使用SDWebImage加载网络图片
+pod 'HXPhotoPicker/SDWebImage', '~> 3.2.3'
+  
+# 使用YYWebImage加载网络图片
+pod 'HXPhotoPicker/YYWebImage', '~> 3.2.3'
+
+# 搜索不到库或最新版时请执行
+pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
+```
+</details>
+
+<details>
+  <summary><strong>Carthage</strong></summary>
+   
+``` ruby
+# 将以下内容添加到您的Cartfile中：
+github "SilenceLove/HXPhotoPicker"
+```
+</details>
+
+<details>
+  <summary><strong>手动导入</strong></summary>
+   
+``` ruby
+手动导入：将项目中的“HXPhotoPicker”文件夹拖入项目中
+使用前导入头文件 "HXPhotoPicker.h"
+```
+</details>
+
+## <a id="要求"></a> 要求 - Requirements
 
 - iOS8及以上系统可使用. ARC环境. - iOS 8 or later. Requires ARC
-- 在Xcode8环境下将项目运行在iOS11的设备/模拟器中，访问相册和相机需要配置四个info.plist文件
+- 访问相册和相机需要配置四个info.plist文件
 - Privacy - Photo Library Usage Description 和 Privacy - Camera Usage Description 以及 Privacy - Microphone Usage Description
 - Privacy - Location When In Use Usage Description 使用相机拍照时会获取位置信息
 - 相机拍照功能请使用真机调试
 
-## <a id="例子"></a> 四.  应用示例 - Examples
-### <a id="如何获取照片和视频"> 如何获取照片和视频
+## <a id="例子"></a> 应用示例 - Examples
+<details id="Demo1">
+  <summary><strong>跳转相册选择照片</strong></summary>
+   
+```objc
+// 懒加载 照片管理类
+- (HXPhotoManager *)manager {
+    if (!_manager) {
+        _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
+    }
+    return _manager;
+}
+
+// 方法一：
+HXWeakSelf
+[self hx_presentSelectPhotoControllerWithManager:self.manager didDone:^(NSArray<HXPhotoModel *> *allList, NSArray<HXPhotoModel *> *photoList, NSArray<HXPhotoModel *> *videoList, BOOL isOriginal, UIViewController *viewController, HXPhotoManager *manager) {
+    weakSelf.total.text = [NSString stringWithFormat:@"总数量：%ld   ( 照片：%ld   视频：%ld )",allList.count, photoList.count, videoList.count];
+    weakSelf.original.text = isOriginal ? @"YES" : @"NO";
+    NSSLog(@"block - all - %@",allList);
+    NSSLog(@"block - photo - %@",photoList);
+    NSSLog(@"block - video - %@",videoList);
+} cancel:^(UIViewController *viewController, HXPhotoManager *manager) {
+    NSSLog(@"block - 取消了");
+}];
+
+// 方法二：
+// 照片选择控制器 
+HXCustomNavigationController *nav = [[HXCustomNavigationController alloc] initWithManager:self.manager delegate:self];
+[self presentViewController:nav animated:YES completion:nil];
+
+// 通过 HXCustomNavigationControllerDelegate 代理返回选择的图片以及视频
+/**
+点击完成按钮
+
+@param photoNavigationViewController self
+@param allList 已选的所有列表(包含照片、视频)
+@param photoList 已选的照片列表
+@param videoList 已选的视频列表
+@param original 是否原图
+*/
+- (void)photoNavigationViewController:(HXCustomNavigationController *)photoNavigationViewController didDoneAllList:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photoList videos:(NSArray<HXPhotoModel *> *)videoList original:(BOOL)original;
+
+/**
+点击取消
+
+@param photoNavigationViewController self
+*/
+- (void)photoNavigationViewControllerDidCancel:(HXCustomNavigationController *)photoNavigationViewController;
+```
+</details>
+
+<details id="单独使用HXPhotoPreviewViewController预览图片">
+  <summary><strong>单独使用HXPhotoPreviewViewController预览图片</strong></summary>
+   
+```objc
+HXCustomAssetModel *assetModel1 = [HXCustomAssetModel assetWithLocaImageName:@"1" selected:YES];
+// selected 为NO 的会过滤掉
+HXCustomAssetModel *assetModel2 = [HXCustomAssetModel assetWithLocaImageName:@"2" selected:NO];
+HXCustomAssetModel *assetModel3 = [HXCustomAssetModel assetWithNetworkImageURL:[NSURL URLWithString:@"http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/1466408576222.jpg"] selected:YES];
+// selected 为NO 的会过滤掉
+HXCustomAssetModel *assetModel4 = [HXCustomAssetModel assetWithNetworkImageURL:[NSURL URLWithString:@"http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/0034821a-6815-4d64-b0f2-09103d62630d.jpg"] selected:NO];
+NSURL *url = [[NSBundle mainBundle] URLForResource:@"QQ空间视频_20180301091047" withExtension:@"mp4"];
+HXCustomAssetModel *assetModel5 = [HXCustomAssetModel assetWithLocalVideoURL:url selected:YES];
+
+HXPhotoManager *photoManager = [HXPhotoManager managerWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
+photoManager.configuration.saveSystemAblum = YES;
+photoManager.configuration.photoMaxNum = 0;
+photoManager.configuration.videoMaxNum = 0;
+photoManager.configuration.maxNum = 10;
+photoManager.configuration.selectTogether = YES;
+photoManager.configuration.photoCanEdit = NO;
+photoManager.configuration.videoCanEdit = NO;
+
+HXWeakSelf
+// 长按事件
+photoManager.configuration.previewRespondsToLongPress = ^(UILongPressGestureRecognizer *longPress, 
+                                                          HXPhotoModel *photoModel, 
+                                                          HXPhotoManager *manager, 
+                                                          HXPhotoPreviewViewController *previewViewController) {
+    hx_showAlert(previewViewController, @"提示", @"长按事件", @"确定", nil, nil, nil);
+};
+// 跳转预览界面时动画起始的view
+photoManager.configuration.customPreviewFromView = ^UIView *(NSInteger currentIndex) {
+    HXPhotoSubViewCell *viewCell = [weakSelf.photoView collectionViewCellWithIndex:currentIndex];
+    return viewCell;
+};
+// 跳转预览界面时展现动画的image
+photoManager.configuration.customPreviewFromImage = ^UIImage *(NSInteger currentIndex) {
+    HXPhotoSubViewCell *viewCell = [weakSelf.photoView collectionViewCellWithIndex:currentIndex];
+    return viewCell.imageView.image;
+};
+// 退出预览界面时终点view
+photoManager.configuration.customPreviewToView = ^UIView *(NSInteger currentIndex) {
+    HXPhotoSubViewCell *viewCell = [weakSelf.photoView collectionViewCellWithIndex:currentIndex];
+    return viewCell;
+};
+[photoManager addCustomAssetModel:@[assetModel1, assetModel2, assetModel3, assetModel4, assetModel5]];
+
+[self hx_presentPreviewPhotoControllerWithManager:photoManager
+                                     previewStyle:HXPhotoViewPreViewShowStyleDark
+                                     currentIndex:0
+                                     photoView:nil];
+
+
+UIViewController+HXExtension.h
+/// 跳转预览照片界面
+/// @param manager 照片管理者
+/// @param previewStyle 预览样式
+/// @param currentIndex 当前预览的下标
+/// @param photoView 照片展示视图 - 没有就不传
+- (void)hx_presentPreviewPhotoControllerWithManager:(HXPhotoManager *)manager
+                                       previewStyle:(HXPhotoViewPreViewShowStyle)previewStyle
+                                       currentIndex:(NSUInteger)currentIndex
+                                          photoView:(HXPhotoView * _Nullable)photoView;
+```
+</details>
+
+<details id="单独使用照片、视频编辑功能">
+  <summary><strong>单独使用照片、视频编辑功能</strong></summary>
+   
+```objc
+// 单独使用照片编辑功能
+HXPhotoModel *photoModel = [HXPhotoModel photoModelWithImage:[UIImage imageNamed:@"1"]];
+[self hx_presentPhotoEditViewControllerWithManager:self.manager photoModel:photoModel delegate:nil done:^(HXPhotoModel *beforeModel,
+    HXPhotoModel *afterModel, HXPhotoEditViewController *viewController) {
+    // beforeModel编辑之前、afterModel编辑之后
+    weakSelf.imageView.image = afterModel.thumbPhoto;
+} cancel:^(HXPhotoEditViewController *viewController) {
+    // 取消
+}];
+
+// 单独使用仿微信编辑功能
+[self hx_presentWxPhotoEditViewControllerWithConfiguration:self.manager.configuration.photoEditConfigur photoModel:photoModel delegate:nil finish:^(HXPhotoEdit * _Nonnull photoEdit, HXPhotoModel * _Nonnull photoModel, HX_PhotoEditViewController * _Nonnull viewController) {
+    if (photoEdit) {
+        // 有编辑过
+        weakSelf.imageView.image = photoEdit.editPreviewImage;
+    }else {
+        // 为空则未进行编辑
+        weakSelf.imageView.image = photoModel.thumbPhoto;
+    }
+    // 记录下当前编辑的记录，再次编辑可在上一次基础上进行编辑
+    weakSelf.photoEdit = photoEdit;
+} cancel:^(HX_PhotoEditViewController * _Nonnull viewController) {
+    // 取消
+}];
+
+// 单独使用视频编辑功能
+NSURL *url = [[NSBundle mainBundle] URLForResource:@"QQ空间视频_20180301091047" withExtension:@"mp4"];
+HXPhotoModel *videoModel = [HXPhotoModel photoModelWithVideoURL:url];
+[self hx_presentVideoEditViewControllerWithManager:self.manager videoModel:videoModel delegate:nil done:^(HXPhotoModel *beforeModel,
+    HXPhotoModel *afterModel, HXVideoEditViewController *viewController) {
+    // beforeModel编辑之前、afterModel编辑之后
+    weakSelf.imageView.image = afterModel.thumbPhoto;
+} cancel:^(HXVideoEditViewController *viewController) {
+    // 取消
+}];
+```
+</details>
+
+<details id="如何获取照片和视频">
+  <summary><strong>如何获取照片和视频</strong></summary>
+   
 ```objc
 // 如果将_manager.configuration.requestImageAfterFinishingSelection 设为YES，
 // 那么在选择完成的时候就会获取图片和视频地址
 // 如果选中了原图那么获取图片时就是原图
 // 获取视频时如果设置 exportVideoURLForHighestQuality 为YES，则会去获取高等质量的视频。其他情况为中等质量的视频
-// 个人建议不在选择完成的时候去获取，可以在要上传的时候再去获取
+// 个人建议不在选择完成的时候去获取，因为每次选择完都会去获取。获取过程中可能会耗时过长
+// 可以在要上传的时候再去获取
 for (HXPhotoModel *model in self.selectList) {
     // 数组里装的是所有类型的资源，需要判断
     // 先判断资源类型
     if (model.subType == HXPhotoModelMediaSubTypePhoto) {
         // 当前为图片
+        if (model.photoEdit) {
+            // 如果有编辑数据，则说明这张图篇被编辑过了
+            // 需要这样才能获取到编辑之后的图片
+            model.photoEdit.editPreviewImage;
+            return;
+        }
         // 再判断具体类型
         if (model.type == HXPhotoModelMediaTypeCameraPhoto) {
             // 到这里就说明这张图片不是手机相册里的图片，可能是本地的也可能是网络图片
@@ -150,47 +357,13 @@ for (HXPhotoModel *model in self.selectList) {
                 // LivePhoto，requestImageAfterFinishingSelection = YES 时没有处理livephoto，需要自己处理
                 // 如果需要上传livephoto的话，需要上传livephoto里的图片和视频
                 // 展示的时候需要根据图片和视频生成livephoto
-                [model requestLivePhotoWithSize:PHImageManagerMaximumSize startRequestICloud:nil progressHandler:nil success:^(PHLivePhoto * _Nullable livePhoto, HXPhotoModel * _Nullable model, NSDictionary * _Nullable info) {
-                    NSArray *resoures = [PHAssetResource assetResourcesForLivePhoto:livePhoto];
-                    // resoures 里面有两个 PHAssetResource 一个图片，一个视频
-                    PHAssetResourceRequestOptions *options = [[PHAssetResourceRequestOptions alloc] init];
-                    // 没有处理iCloud上的情况，需要自己处理
-                    // options.networkAccessAllowed = YES;
-                    // options.progressHandler = ^(double progress) {
-                    //
-                    // };
+                [model requestLivePhotoAssetsWithSuccess:^(NSURL * _Nullable imageURL, NSURL * _Nullable videoURL, BOOL isNetwork, HXPhotoModel * _Nullable model) {
+                    // imageURL - LivePhoto里的照片封面地址
+                    // videoURL - LivePhoto里的视频地址
                     
-                    NSString *fileName = [[NSString hx_fileName] stringByAppendingString:@".mp4"];
-                    NSString *fullPathToFile = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
-                    // 导出livePhoto视频的本地地址
-                    NSURL *videoURL = [NSURL fileURLWithPath:fullPathToFile];
-                    for (PHAssetResource *assetResource in resoures) {
-                        if (assetResource.type == PHAssetResourceTypePhoto) {
-                            // LivePhoto的封面
-                            [[PHAssetResourceManager defaultManager] requestDataForAssetResource:assetResource options:options dataReceivedHandler:^(NSData * _Nonnull data) {
-                                UIImage *livePhoto_image = [UIImage imageWithData:data];
-                                // livePhoto_image 需要上传的LIvePhoto封面
-                                NSSLog(@"LivePhoto_image - %@", livePhoto_image);
-                            } completionHandler:^(NSError * _Nullable error) {
-                                if (error) {
-                                    NSSLog(@"LivePhoto_image - 失败%@",error.localizedDescription);
-                                }else {
-                                    NSSLog(@"LivePhoto_image - 成功");
-                                }
-                            }];
-                        }else if (assetResource.type == PHAssetResourceTypePairedVideo) {
-                            // LivePhoto的视频内容
-                            [[PHAssetResourceManager defaultManager] writeDataForAssetResource:assetResource toFile:videoURL options:options completionHandler:^(NSError * _Nullable error) {
-                                if (!error) {
-                                    // videoURL 需要上传的LIvePhoto视频地址，已经在本地存在的
-                                    NSSLog(@"LivePhoto_video - %@", videoURL);
-                                }else {
-                                    NSSLog(@"LivePhoto_video - 失败%@",error.localizedDescription);
-                                }
-                            }];
-                        }
-                    }
-                } failed:nil];
+                } failed:^(NSDictionary * _Nullable info, HXPhotoModel * _Nullable model) {
+                    // 获取失败
+                }];
             }
             // 也可以不用上面的判断和方法获取，自己根据 model.asset 这个PHAsset对象来获取想要的东西
             PHAsset *asset = model.asset;
@@ -240,59 +413,22 @@ for (HXPhotoModel *model in self.selectList) {
     }
 }
 ```
-### <a id="判断两个HXPhotoModel是否为同一资源"> 判断两个HXPhotoModel是否为同一资源
+</details>
+
+<details id="判断两个HXPhotoModel是否为同一资源">
+  <summary><strong>判断两个HXPhotoModel是否为同一资源</strong></summary>
+   
 ```
 HXPhotoModel对象方法
 /// 判断两个HXPhotoModel是否是同一个
 /// @param photoModel 模型
-- (BOOL)isEqualPhotoModel:(HXPhotoModel * _Nullable)photoModel;
+- (BOOL)isEqualToPhotoModel:(HXPhotoModel * _Nullable)photoModel;
 ```
-### <a id="Demo1"></a> 跳转相册选择照片
-```objc
-// 懒加载 照片管理类
-- (HXPhotoManager *)manager {
-    if (!_manager) {
-        _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
-    }
-    return _manager;
-}
+</details>
 
-// 一个方法调用
-HXWeakSelf
-[self hx_presentSelectPhotoControllerWithManager:self.manager didDone:^(NSArray<HXPhotoModel *> *allList, NSArray<HXPhotoModel *> *photoList, NSArray<HXPhotoModel *> *videoList, BOOL isOriginal, UIViewController *viewController, HXPhotoManager *manager) {
-    weakSelf.total.text = [NSString stringWithFormat:@"总数量：%ld   ( 照片：%ld   视频：%ld )",allList.count, photoList.count, videoList.count];
-    weakSelf.original.text = isOriginal ? @"YES" : @"NO";
-    NSSLog(@"block - all - %@",allList);
-    NSSLog(@"block - photo - %@",photoList);
-    NSSLog(@"block - video - %@",videoList);
-} cancel:^(UIViewController *viewController, HXPhotoManager *manager) {
-    NSSLog(@"block - 取消了");
-}];
-
-// 照片选择控制器 
-HXCustomNavigationController *nav = [[HXCustomNavigationController alloc] initWithManager:self.manager delegate:self];
-[self presentViewController:nav animated:YES completion:nil];
-
-// 通过 HXCustomNavigationControllerDelegate 代理返回选择的图片以及视频
-/**
-点击完成按钮
-
-@param photoNavigationViewController self
-@param allList 已选的所有列表(包含照片、视频)
-@param photoList 已选的照片列表
-@param videoList 已选的视频列表
-@param original 是否原图
-*/
-- (void)photoNavigationViewController:(HXCustomNavigationController *)photoNavigationViewController didDoneAllList:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photoList videos:(NSArray<HXPhotoModel *> *)videoList original:(BOOL)original;
-
-/**
-点击取消
-
-@param photoNavigationViewController self
-*/
-- (void)photoNavigationViewControllerDidCancel:(HXCustomNavigationController *)photoNavigationViewController;
-```
-### <a id="Demo2"></a> 使用HXPhotoView布局
+<details id="Demo2">
+  <summary><strong>使用HXPhotoView布局</strong></summary>
+   
 ```objc
 // 懒加载 照片管理类
 - (HXPhotoManager *)manager {
@@ -318,46 +454,34 @@ photoView.backgroundColor = [UIColor whiteColor];
 具体请查看HXPhotoView.h
 ...
 ```
-### <a id="如何保存草稿"></a> 如何保存草稿
+</details>
+
+<details id="如何保存草稿">
+  <summary><strong>使用如何保存草稿</strong></summary>
+   
 ```objc
 通过 HXPhotoManager 对象进行存储
-/**
-保存模型数组到本地
+/// 获取保存在本地文件的模型数组
+- (NSArray<HXPhotoModel *> *)getLocalModelsInFile;
 
-@param success 成功
-@param failed 失败
-*/
-- (void)saveSelectModelArraySuccess:(void (^)(void))success failed:(void (^)(void))failed;
-/**
-删除本地保存的模型数组
+/// 将模型数组保存到本地文件
+- (BOOL)saveLocalModelsToFile;
 
-@return success or failed
-*/
-- (BOOL)deleteLocalSelectModelArray;
-/**
-获取保存在本地的模型数组
+/// 将保存在本地文件的模型数组删除
+- (BOOL)deleteLocalModelsInFile;
 
-*/
-- (void)getSelectedModelArrayComplete:(void (^)(NSArray<HXPhotoModel *> *modelArray))complete;
+/// 将本地获取的模型数组添加到manager的数据中
+/// @param models 在本地获取的模型数组
+- (void)addLocalModels:(NSArray<HXPhotoModel *> *)models;
 
-// 保存草稿
-[self.manager saveSelectModelArraySuccess:^{
-    // 保存草稿成功
-} failed:^{
-    // 保存草稿失败
-}];
-
-// 获取草稿
-[self.manager getSelectedModelArrayComplete:^(NSArray<HXPhotoModel *> *modelArray) {
-    if (modelArray.count) {
-        // 获取到保存的草稿给manager
-        [weakSelf.manager addModelArray:modelArray];
-        // 刷新HXPhotoView
-        [weakSelf.photoView refreshView];
-    }
-}];
+/// 将本地获取的模型数组添加到manager的数据中
+- (void)addLocalModels;
 ```
-### <a id="如何添加网络/本地图片、视频"></a> 如何添加网络/本地图片、视频
+</details>
+
+<details id="如何添加网络/本地图片、视频">
+  <summary><strong>如何添加网络/本地图片、视频</strong></summary>
+   
 ```objc
 通过 HXPhotoManager、HXCustomAssetModel 进行添加
 /**
@@ -423,12 +547,32 @@ photoView.backgroundColor = [UIColor whiteColor];
 // 完成后刷新HXPhotoView
 [self.photoView refreshView];  
 ```
-### <a id="相关问题"></a> 相关问题
-#### 1. pod YYWebImage与YYKit冲突
+</details>
+
+## <a id="相关问题"></a> 相关问题 - Issues
+<details open id="ios14预览大图显示空白">
+  <summary><strong>ios14预览大图显示空白</strong></summary>
+   
+```objc
+1、SDWebImage解决方案：升级到最新版
+2、YYWebImage解决方案：
+   https://github.com/ibireme/YYKit/issues/573
+   https://www.jianshu.com/p/9c117dbe22a8
+   或者替换成SDWebImage
+```
+</details>
+
+<details id="pod YYWebImage与YYKit冲突">
+  <summary><strong>pod YYWebImage与YYKit冲突</strong></summary>
+   
 ```objc
 解决方案：将YYKit拆开分别导入
 ```
-#### 2. 如何更换语言
+</details>
+
+<details id="如何更换语言">
+  <summary><strong>如何更换语言</strong></summary>
+   
 ```objc
 HXPhotoConfiguration.h
 
@@ -446,21 +590,11 @@ HXPhotoLanguageTypeEn       // 英文
 */
 @property (assign, nonatomic) HXPhotoLanguageType languageType;
 ```
-#### 3. 选择完照片后其他界面视图往下偏移
-```objc
-方法一：
-/**
-如果选择完照片返回之后，
-原有界面继承UIScrollView的视图都往下偏移一个导航栏距离的话，
-那么请将这个属性设置为YES，即可恢复。
-*/
-@Property (assign, nonatomic) BOOL restoreNavigationBar;
+</details>
 
-方法二：
-在选择完照片之后加上
-[UINavigationBar appearance].translucent = NO;
-```
-#### 4. 关于图片
+<details id="关于图片类型">
+  <summary><strong>关于图片类型</strong></summary>
+   
 ```objc
 根据HXPhotoModel的type属性来区分图片类型
 HXPhotoModelMediaTypePhoto          = 0,    //!< 相册里的普通照片
@@ -472,13 +606,21 @@ HXPhotoModelMediaTypeCameraPhoto    = 5,    //!< 通过相机拍的临时照片�
 不为本地图片时thumbPhoto/previewPhoto的值都是临时存的只用于展示
 HXPhotoModel已提供方法获取image或者imageData
 ```
-#### 5. 关于视频的URL
+</details>
+
+<details id="关于视频的URL">
+  <summary><strong>关于视频的URL</strong></summary>
+   
 ```objc
 1.如果选择的HXPhotoModel的PHAsset有值，需要先获取AVAsset，再使用AVAssetExportSession根据AVAsset导出视频地址
 2.如果PHAsset为空的话，则代表此视频是本地视频。可以直接HXPhotoModel里的VideoURL属性
 HXPhotoModel已提供方法获取
 ```
-#### 6. 关于相机拍照
+</details>
+
+<details id="关于相机拍照">
+  <summary><strong>关于相机拍照</strong></summary>
+   
 ```objc
 当拍摄的照片/视频保存到系统相册
 如果系统版本为9.0及以上时，拍照后的照片/视频保存相册后会获取保存后的PHAsset，保存的时候如果有定位信息也会把定位信息保存到相册
@@ -486,7 +628,11 @@ HXPhotoModel里PHAsset有值并且type为 HXPhotoModelMediaTypePhoto / HXPhotoMo
 以下版本的和不保存相册的都只是存在本地的临时图片/视频 
 HXPhotoModel里PHAsset为空并且type为 HXPhotoModelMediaTypeCameraPhoto / HXPhotoModelMediaTypeCameraVideo
 ```
-#### 7. 关于原图
+</details>
+
+<details id="关于原图">
+  <summary><strong>关于原图</strong></summary>
+   
 ```objc
 根据代理或者block回调里的 isOriginal 来判断是否选择了原图 
 方法一：
@@ -552,105 +698,57 @@ HXPhotoModel里PHAsset为空并且type为 HXPhotoModelMediaTypeCameraPhoto / HXP
     // 获取失败
 }];
 ```
-#### 8. 单独使用HXPhotoPreviewViewController预览图片
-```objc
-HXCustomAssetModel *assetModel1 = [HXCustomAssetModel assetWithLocaImageName:@"1" selected:YES];
-// selected 为NO 的会过滤掉
-HXCustomAssetModel *assetModel2 = [HXCustomAssetModel assetWithLocaImageName:@"2" selected:NO];
-HXCustomAssetModel *assetModel3 = [HXCustomAssetModel assetWithNetworkImageURL:[NSURL URLWithString:@"http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/1466408576222.jpg"] selected:YES];
-// selected 为NO 的会过滤掉
-HXCustomAssetModel *assetModel4 = [HXCustomAssetModel assetWithNetworkImageURL:[NSURL URLWithString:@"http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/0034821a-6815-4d64-b0f2-09103d62630d.jpg"] selected:NO];
-NSURL *url = [[NSBundle mainBundle] URLForResource:@"QQ空间视频_20180301091047" withExtension:@"mp4"];
-HXCustomAssetModel *assetModel5 = [HXCustomAssetModel assetWithLocalVideoURL:url selected:YES];
+</details>
 
-HXPhotoManager *photoManager = [HXPhotoManager managerWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
-photoManager.configuration.saveSystemAblum = YES;
-photoManager.configuration.photoMaxNum = 0;
-photoManager.configuration.videoMaxNum = 0;
-photoManager.configuration.maxNum = 10;
-photoManager.configuration.selectTogether = YES;
-photoManager.configuration.photoCanEdit = NO;
-photoManager.configuration.videoCanEdit = NO;
-
-HXWeakSelf
-// 长按事件
-photoManager.configuration.previewRespondsToLongPress = ^(UILongPressGestureRecognizer *longPress, 
-                                                          HXPhotoModel *photoModel, 
-                                                          HXPhotoManager *manager, 
-                                                          HXPhotoPreviewViewController *previewViewController) {
-    hx_showAlert(previewViewController, @"提示", @"长按事件", @"确定", nil, nil, nil);
-};
-// 跳转预览界面时动画起始的view
-photoManager.configuration.customPreviewFromView = ^UIView *(NSInteger currentIndex) {
-    HXPhotoSubViewCell *viewCell = [weakSelf.photoView collectionViewCellWithIndex:currentIndex];
-    return viewCell;
-};
-// 跳转预览界面时展现动画的image
-photoManager.configuration.customPreviewFromImage = ^UIImage *(NSInteger currentIndex) {
-    HXPhotoSubViewCell *viewCell = [weakSelf.photoView collectionViewCellWithIndex:currentIndex];
-    return viewCell.imageView.image;
-};
-// 退出预览界面时终点view
-photoManager.configuration.customPreviewToView = ^UIView *(NSInteger currentIndex) {
-    HXPhotoSubViewCell *viewCell = [weakSelf.photoView collectionViewCellWithIndex:currentIndex];
-    return viewCell;
-};
-[photoManager addCustomAssetModel:@[assetModel1, assetModel2, assetModel3, assetModel4, assetModel5]];
-
-[self hx_presentPreviewPhotoControllerWithManager:photoManager
-                                     previewStyle:HXPhotoViewPreViewShowStyleDark
-                                     currentIndex:0
-                                     photoView:nil];
-
-
-UIViewController+HXExtension.h
-/// 跳转预览照片界面
-/// @param manager 照片管理者
-/// @param previewStyle 预览样式
-/// @param currentIndex 当前预览的下标
-/// @param photoView 照片展示视图 - 没有就不传
-- (void)hx_presentPreviewPhotoControllerWithManager:(HXPhotoManager *)manager
-                                       previewStyle:(HXPhotoViewPreViewShowStyle)previewStyle
-                                       currentIndex:(NSUInteger)currentIndex
-                                          photoView:(HXPhotoView * _Nullable)photoView;
-```
-#### 9. 单独使用照片、视频编辑功能
-```objc
-// 单独使用照片编辑功能
-HXPhotoModel *photoModel = [HXPhotoModel photoModelWithImage:[UIImage imageNamed:@"1"]];
-[self hx_presentPhotoEditViewControllerWithManager:self.manager photoModel:photoModel delegate:nil done:^(HXPhotoModel *beforeModel,
-    HXPhotoModel *afterModel, HXPhotoEditViewController *viewController) {
-    // beforeModel编辑之前、afterModel编辑之后
-    weakSelf.imageView.image = afterModel.thumbPhoto;
-} cancel:^(HXPhotoEditViewController *viewController) {
-    // 取消
-}];
-
-// 单独使用视频编辑功能
-NSURL *url = [[NSBundle mainBundle] URLForResource:@"QQ空间视频_20180301091047" withExtension:@"mp4"];
-HXPhotoModel *videoModel = [HXPhotoModel photoModelWithVideoURL:url];
-[self hx_presentVideoEditViewControllerWithManager:self.manager videoModel:videoModel delegate:nil done:^(HXPhotoModel *beforeModel,
-    HXPhotoModel *afterModel, HXVideoEditViewController *viewController) {
-    // beforeModel编辑之前、afterModel编辑之后
-    weakSelf.imageView.image = afterModel.thumbPhoto;
-} cancel:^(HXVideoEditViewController *viewController) {
-    // 取消
-}];
-```
-#### 10. HXPhotoView使用约束布局
+<details id="HXPhotoView使用约束布局">
+  <summary><strong>HXPhotoView使用约束布局</strong></summary>
+   
 ```objc
 使用约束布局HXPhotoView的话需要在 
 - (void)photoView:(HXPhotoView *)photoView updateFrame:(CGRect)frame 这个代理回调里更新约束的高度
 frame.size.height 就是 HXPhotoView 的正确高度
 代码参考demo11
 ```
-#### 11. 建议
-```objc
-建议将 HXPhotoPicker.bundle 里的图片资源手动添加到项目的 Assets.xcassets 里
-```
+</details>
 
-## <a id="更新历史"></a> 五.  更新历史 - Update History
+## <a id="更新记录"></a> 更新记录 - Update History
+<details open id="最近更新">
+  <summary><strong>最近更新</strong></summary>
+   
 ```
+- v3.2.2　-　iOS 14 图片选择部分，限制提示
+- v3.2.2　-　修改静音状态下播放视频没有声音。pod导入的支持自定义HXPhotoView的itemSize，导入方式为 pod 'HXPhotoPicker/CustomItem'
+- v3.2.1　-　优化转场动画、手势返回、修复系统相册编辑过的图片获取原图大小时错误问题、国际化完善、修复获取gif的URL时为静态图的问题
+- v3.2.0　-　修复特殊情况下获取视频地址崩溃问题
+- v3.1.9　-　优化连续编辑大图出现的内存问题，修复相机拍照后预览崩溃问题
+- v3.1.8　-　修复保存自定义相册无效问题
+- v3.1.7　-　修复相机闪光灯失效问题、视频转场动画效果优化、HXPhotoModel添加获取原视频地址方法、添加属性控制预览界面是否直接加载原图
+```
+</details>
+   
+<details id="历史记录">
+  <summary><strong>历史记录</strong></summary>
+   
+```
+- v3.1.6　-　修复相机界面内存泄漏问题、相册权限为部分时拍照错乱问题、requestImageAfterFinishingSelection为YES时未获取原图问题
+- v3.1.5　-　修复获取保存本地的视频时，选中下标错误显示为视频时长、优化手势动画效果、编辑图片时支持圆形裁剪框
+- v3.1.4　-　fix previewPhoto为nil
+- v3.1.3　-　修复dark模式下选择按钮颜色错误、退出选择界面时清空缓存、修复iOS14下iCloud上视频可以加载失败问题、提高列表/大图清晰度、修复过滤PHAsset时总数量不对问题
+- v3.1.2　-　适配iPhone12、去除警告、添加可过滤PHAssetCollection、PHAsset功能
+- v3.1.1　-　dark模式下界面优化，修复编辑图片在特殊情况下出现未编辑图片显示已编辑状态、完善iOS14适配
+- v3.1.0　-　完善iOS14相册权限，修复iOS11以下布局问题
+- v3.0.8　-　修复国际化文件问题、添加滑动手势选择功能
+- v3.0.7　-　本地化文件名重名问题修改、相机/相册跳转未全屏问题修改
+- v3.0.6　-　修复编辑图片时内存过高的问题、相机添加自动曝光、编辑图片时添加镜像功能、画笔大小支持更改等...
+- v3.0.5　-　提高稳定性、支持本地图片和视频生成LivePhoto、支持网络图片和视频生成LivePhoto、修复单选编辑之后状态栏隐藏的问题、整理缓存路径
+- v3.0.4　-　优化选择逻辑、暗黑模式。完善微信样式
+- v3.0.3　-　解决pod加载xib报错的问题、支持添加本地gif图片
+- v3.0.2　-　适配ios14、照片列表导航栏支持自定义titleView
+- v3.0.0　-　添加仿微信图片编辑功能、相机界面更变为微信样式、添加一键配置微信样式
+...
+- v2.4.5　-　pod添加 SDWebImage/YYWebImage 子库，修复已知问题
+- v2.4.4　-　修复了一些bug（HXPhotoView使用约束布局的问题等...），添加Demo15显示底部弹窗视图的示例代码
+- v2.4.3　-　添加Demo14，HXPhotoView自定义Item大小的示例代码
 - v2.4.2　-　修复横屏布局问题
 - v2.4.1　-　添加属性控制编辑之后的照片/视频是否添加到系统相册、pod移除AFNetworking依赖
 - v2.4.0　-　支持添加网络视频、视频添加进度条，demo8添加获取图片/视频详细注释
@@ -703,22 +801,21 @@ frame.size.height 就是 HXPhotoView 的正确高度
 - 2017-03-07　　修复通过相机拍照时照片旋转90°的问题
 - 2017-03-06　　第一次提交
 ```
+</details>
 
-## <a id="后续计划"></a> 六.  后续计划 - Plan
+## <a id="后续计划"></a> 后续计划 - Plan
 - [x] 视频添加进度条
 - [x] 支持添加网络视频
 - [x] 视频查看时支持放大缩小
 - [ ] HXPhotoView支持单选模式
+- [ ] 优化、重构
 ...
 
-## <a id="更多"></a> 七.  更多 - More
+## <a id="更多"></a> 👨🏻‍💻 - Author
 
-- 如果您发现了bug请尽可能详细地描述系统版本、手机型号和复现步骤等信息 提一个issue.
-
-- 如果您有什么好的建议也可以提issue,大家一起讨论一起学习进步...
-
-- 具体代码请下载项目  如果觉得喜欢的能给一颗小星星么!  ✨✨✨
-
-- [有兴趣可以加下创建的QQ群:531895229(有问题请先看Demo，因为工作很忙所以可能问问题没人回答!!)](//shang.qq.com/wpa/qunwpa?idkey=ebd8d6809c83b4d6b4a18b688621cb73ded0cce092b4d1f734e071a58dd37c26)
+- Email: 294005139@qq.com
+- [有兴趣可以加QQ群:531895229](//shang.qq.com/wpa/qunwpa?idkey=ebd8d6809c83b4d6b4a18b688621cb73ded0cce092b4d1f734e071a58dd37c26)
+<img src="http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/chartle/AC635A016B904F0577218D2125677C22.png" width="200" height="232">
+<img src="http://tsnrhapp.oss-cn-hangzhou.aliyuncs.com/chartle/240CC0630D104E270662EBBF7F58493D.png" width="200" height="200">
 
 [回到顶部](#readme)

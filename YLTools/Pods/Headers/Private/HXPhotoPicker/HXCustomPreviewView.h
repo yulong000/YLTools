@@ -1,1 +1,1 @@
-../../../HXPhotoPicker/照片选择器/HXPhotoPicker/HXCustomPreviewView.h
+../../../HXPhotoPicker/HXPhotoPicker/View/HXCustomPreviewView.h

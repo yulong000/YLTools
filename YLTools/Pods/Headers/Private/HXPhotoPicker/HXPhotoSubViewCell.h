@@ -1,1 +1,1 @@
-../../../HXPhotoPicker/照片选择器/HXPhotoPicker/HXPhotoSubViewCell.h
+../../../HXPhotoPicker/HXPhotoPicker/View/HXPhotoSubViewCell.h

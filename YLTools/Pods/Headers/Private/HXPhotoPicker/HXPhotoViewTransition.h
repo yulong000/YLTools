@@ -1,1 +1,1 @@
-../../../HXPhotoPicker/照片选择器/HXPhotoPicker/TransitionAnimation/HXPhotoViewTransition.h
+../../../HXPhotoPicker/HXPhotoPicker/TransitionAnimation/HXPhotoViewTransition.h

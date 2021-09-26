@@ -1,1 +1,1 @@
-../../../HXPhotoPicker/照片选择器/HXPhotoPicker/Category/NSArray+HXExtension.h
+../../../HXPhotoPicker/HXPhotoPicker/Category/NSArray+HXExtension.h

@@ -386,20 +386,14 @@
 }
 
 + (NSData *)dataWithRequest:(NSMutableURLRequest *)request {
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:NULL];
-//    #define kGetImageDataHeaderFieldTimeoutInterval 1   // 超时时间 1s
-//    __block NSData *data = nil;
-//    __block dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-//    NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable dataRespose, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        
-//        if(error == nil && dataRespose.length)
-//        {
-//            data = dataRespose;
-//        }
-//        dispatch_semaphore_signal(semaphore);
-//    }];
-//    [dataTask resume];
-//    dispatch_semaphore_wait(semaphore, kGetImageDataHeaderFieldTimeoutInterval);
+    __block NSData *data = nil;
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        data = data;
+        dispatch_semaphore_signal(sem);
+    }];
+    [task resume];
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
     return data;
 }
 

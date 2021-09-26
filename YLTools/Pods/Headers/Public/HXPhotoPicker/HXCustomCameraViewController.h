@@ -1,1 +1,1 @@
-../../../HXPhotoPicker/照片选择器/HXPhotoPicker/HXCustomCameraViewController.h
+../../../HXPhotoPicker/HXPhotoPicker/Controller/HXCustomCameraViewController.h

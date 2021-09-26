@@ -36,4 +36,16 @@
     return [NSString stringWithString:digest];
 }
 
+#pragma mark base 64 编码
+- (NSString *)base64Encode {
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return [data base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+}
+
+#pragma mark base 64 解码
+- (NSString *)base64Decode {
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:self options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+}
+
 @end

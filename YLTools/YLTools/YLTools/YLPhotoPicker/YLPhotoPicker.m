@@ -230,7 +230,8 @@
     if(photoMode.type == HXPhotoModelMediaTypePhoto) {
         __block UIImage *image = nil;
         PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-        options.resizeMode = PHImageRequestOptionsResizeModeExact;
+        options.resizeMode = PHImageRequestOptionsResizeModeFast;
+        options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
         options.synchronous = YES;
         options.networkAccessAllowed = YES;
         [[PHCachingImageManager defaultManager] requestImageForAsset:photoMode.asset targetSize:size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {

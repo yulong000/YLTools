@@ -98,14 +98,14 @@ EOM
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle"
-  install_resource "${PODS_ROOT}/HXPhotoPicker/照片选择器/HXPhotoPicker/Resource/HXPhotoPicker.bundle"
+  install_resource "${PODS_ROOT}/HXPhotoPicker/HXPhotoPicker/Resources/HXPhotoPicker.bundle"
   install_resource "${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle"
   install_resource "${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle"
   install_resource "${PODS_ROOT}/YLCategory/YLCategory/MBProgressHUD/MBProgressHUD.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle"
-  install_resource "${PODS_ROOT}/HXPhotoPicker/照片选择器/HXPhotoPicker/Resource/HXPhotoPicker.bundle"
+  install_resource "${PODS_ROOT}/HXPhotoPicker/HXPhotoPicker/Resources/HXPhotoPicker.bundle"
   install_resource "${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle"
   install_resource "${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle"
   install_resource "${PODS_ROOT}/YLCategory/YLCategory/MBProgressHUD/MBProgressHUD.bundle"
@@ -122,7 +122,7 @@ rm -f "$RESOURCES_TO_COPY"
 if [[ -n "${WRAPPER_EXTENSION}" ]] && [ "`xcrun --find actool`" ] && [ -n "${XCASSET_FILES:-}" ]
 then
   # Find all other xcassets (this unfortunately includes those of path pods and other targets).
-  OTHER_XCASSETS=$(find "$PWD" -iname "*.xcassets" -type d)
+  OTHER_XCASSETS=$(find -L "$PWD" -iname "*.xcassets" -type d)
   while read line; do
     if [[ $line != "${PODS_ROOT}*" ]]; then
       XCASSET_FILES+=("$line")

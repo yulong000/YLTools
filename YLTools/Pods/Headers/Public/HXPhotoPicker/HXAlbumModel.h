@@ -1,1 +1,1 @@
-../../../HXPhotoPicker/照片选择器/HXPhotoPicker/HXAlbumModel.h
+../../../HXPhotoPicker/HXPhotoPicker/Model/HXAlbumModel.h

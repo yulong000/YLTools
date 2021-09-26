@@ -71,6 +71,24 @@
     return alertController;
 }
 
++ (UIAlertController *)actionSheetControllerWithTitle:(NSString *)title
+                                              message:(NSString *)message
+                                            subTitles:(NSArray<NSString *> *)subTitles
+                                              handler:(void (^)(NSInteger))handler {
+    NSMutableArray *arr = [NSMutableArray array];
+    for (int i = 0; i < subTitles.count; i ++) {
+        UIAlertActionModel *model = [UIAlertActionModel actionModelWithTitle:subTitles[i] actionStyle:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            if(handler) {
+                handler(i);
+            }
+        }];
+        [arr addObject:model];
+    }
+    UIAlertActionModel *cancel = [UIAlertActionModel cancelAction];
+    [arr addObject:cancel];
+    return [self actionSheetControllerWithTitle:title message:message actionModels:arr];
+}
+
 - (void)showWithController:(UIViewController *)controller {
     [self showWithController:controller completion:nil];
 }

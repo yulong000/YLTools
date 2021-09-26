@@ -50,8 +50,12 @@
             textView.text = str;
             
             // 第一张照片
-            NSArray *images = [YLPhotoPicker getImagesFromPhotoModes:photoModelArr size:CGSizeMake(300, 300)];
+            NSArray *images = [YLPhotoPicker getImagesFromPhotoModes:photoModelArr size:CGSizeMake(500, 500)];
             if(images.count) imageView.image = images.firstObject;
+            
+            for (UIImage *img in images) {
+                NSLog(@"图片大小 ： %f  %f", img.size.width, img.size.height);
+            }
         }];
     }];
     [photo setTitleColor:WhiteColor forState:UIControlStateNormal];

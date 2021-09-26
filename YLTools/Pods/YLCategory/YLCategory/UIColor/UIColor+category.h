@@ -8,14 +8,6 @@
 + (UIColor *)randomColor;
 
 /**
- *  由16进制颜色格式生成UIColor (0xffffff)
- *
- *  @param alpha 透明度
- */
-+ (UIColor *)colorWithHex:(UInt32)hex andAlpha:(CGFloat)alpha;
-+ (UIColor *)colorWithHex:(UInt32)hex;
-
-/**
  *  由16进制颜色字符串格式生成UIColor
  *
  *  @param hexString 16进制颜色#00FF00

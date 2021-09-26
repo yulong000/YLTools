@@ -1,67 +1,75 @@
 PODS:
-  - AFNetworking (4.0.0):
-    - AFNetworking/NSURLSession (= 4.0.0)
-    - AFNetworking/Reachability (= 4.0.0)
-    - AFNetworking/Security (= 4.0.0)
-    - AFNetworking/Serialization (= 4.0.0)
-    - AFNetworking/UIKit (= 4.0.0)
-  - AFNetworking/NSURLSession (4.0.0):
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (4.0.0)
-  - AFNetworking/Security (4.0.0)
-  - AFNetworking/Serialization (4.0.0)
-  - AFNetworking/UIKit (4.0.0):
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - AlipaySDK-iOS (15.6.8)
-  - AMapFoundation (1.6.3)
-  - AMapLocation (2.6.5):
-    - AMapFoundation (~> 1.6.3)
-  - HXPhotoPicker (2.4.2)
-  - MJExtension (3.2.1)
+  - AlipaySDK-iOS (15.7.9)
+  - AMapFoundation (1.6.8)
+  - AMapLocation (2.7.0):
+    - AMapFoundation (~> 1.6.8)
+  - HXPhotoPicker (3.2.3):
+    - HXPhotoPicker/Default (= 3.2.3)
+  - HXPhotoPicker/Default (3.2.3)
+  - MJExtension (3.3.0)
   - SAMKeychain (1.5.3)
-  - UMCCommon (2.1.4)
-  - UMCShare/Core (6.9.8):
+  - UMAPM (1.4.2)
+  - UMCCommon (7.3.5):
+    - UMAPM
+    - UMDevice
+  - UMCShare/Core (6.10.2):
     - UMCCommon
-  - UMCShare/Social/ReducedQQ (6.9.8):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/ReducedSina (6.9.8):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/ReducedWeChat (6.9.8):
+  - UMCShare/Social/ReducedQQ (6.10.2):
     - UMCCommon
     - UMCShare/Core
-  - UMCShare/UI (6.9.8):
+  - UMCShare/Social/ReducedSina (6.10.2):
     - UMCCommon
     - UMCShare/Core
-  - WechatOpenSDK (1.8.7)
-  - YLCategory (1.1.4):
-    - YLCategory/MBProgressHUD (= 1.1.4)
-    - YLCategory/NSDate (= 1.1.4)
-    - YLCategory/NSObject (= 1.1.4)
-    - YLCategory/NSString (= 1.1.4)
-    - YLCategory/Others (= 1.1.4)
-    - YLCategory/UIAlertController (= 1.1.4)
-    - YLCategory/UIButton (= 1.1.4)
-    - YLCategory/UIColor (= 1.1.4)
-    - YLCategory/UIControl (= 1.1.4)
-    - YLCategory/UIImage (= 1.1.4)
-    - YLCategory/UILabel (= 1.1.4)
-    - YLCategory/UIView (= 1.1.4)
-  - YLCategory/MBProgressHUD (1.1.4)
-  - YLCategory/NSDate (1.1.4)
-  - YLCategory/NSObject (1.1.4)
-  - YLCategory/NSString (1.1.4)
-  - YLCategory/Others (1.1.4)
-  - YLCategory/UIAlertController (1.1.4)
-  - YLCategory/UIButton (1.1.4)
-  - YLCategory/UIColor (1.1.4)
-  - YLCategory/UIControl (1.1.4)
-  - YLCategory/UIImage (1.1.4)
-  - YLCategory/UILabel (1.1.4)
-  - YLCategory/UIView (1.1.4)
+  - UMCShare/Social/ReducedWeChat (6.10.2):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/UI (6.10.2):
+    - UMCCommon
+    - UMCShare/Core
+  - UMDevice (2.0.5)
+  - WechatOpenSDK (1.8.7.1)
+  - YLCategory (1.1.8):
+    - YLCategory/MBProgressHUD (= 1.1.8)
+    - YLCategory/NSDate (= 1.1.8)
+    - YLCategory/NSObject (= 1.1.8)
+    - YLCategory/NSString (= 1.1.8)
+    - YLCategory/Others (= 1.1.8)
+    - YLCategory/UIAlertController (= 1.1.8)
+    - YLCategory/UIButton (= 1.1.8)
+    - YLCategory/UIColor (= 1.1.8)
+    - YLCategory/UIControl (= 1.1.8)
+    - YLCategory/UIImage (= 1.1.8)
+    - YLCategory/UILabel (= 1.1.8)
+    - YLCategory/UIView (= 1.1.8)
+    - YLCategory/UIViewController (= 1.1.8)
+  - YLCategory/MBProgressHUD (1.1.8)
+  - YLCategory/NSDate (1.1.8)
+  - YLCategory/NSObject (1.1.8)
+  - YLCategory/NSString (1.1.8)
+  - YLCategory/Others (1.1.8)
+  - YLCategory/UIAlertController (1.1.8)
+  - YLCategory/UIButton (1.1.8)
+  - YLCategory/UIColor (1.1.8)
+  - YLCategory/UIControl (1.1.8)
+  - YLCategory/UIImage (1.1.8)
+  - YLCategory/UILabel (1.1.8)
+  - YLCategory/UIView (1.1.8)
+  - YLCategory/UIViewController (1.1.8)
 
 DEPENDENCIES:
   - AFNetworking
@@ -87,24 +95,28 @@ SPEC REPOS:
     - HXPhotoPicker
     - MJExtension
     - SAMKeychain
+    - UMAPM
     - UMCCommon
     - UMCShare
+    - UMDevice
     - WechatOpenSDK
     - YLCategory
 
 SPEC CHECKSUMS:
-  AFNetworking: d9fdf484a3c723ec3c558a41cc5754c7e845ee77
-  AlipaySDK-iOS: 703a55774a37f412410ab04af96c011b91ec58cb
-  AMapFoundation: 9ed923193b357ebb30a073e9fe255d3c24054d5a
-  AMapLocation: c566d448285cd502c1e313063d9e2460bd4d7100
-  HXPhotoPicker: 0b0751fe5d64271edefcd5cc4ffa9b6300ca58b7
-  MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  AlipaySDK-iOS: 94ff4c0e17c5e7d126b8207596d5033006534c25
+  AMapFoundation: 32e9a0264ee62f5aa2aaf82bdafdda7985ce09c7
+  AMapLocation: 720eb034995c6198d480f8f7bbd714bb08bb9ef7
+  HXPhotoPicker: f05aa6d293a13ba1b3f3523779c97e390ed44a42
+  MJExtension: 01704cca2b60a214c10761b6491eab74069d68a9
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
-  UMCCommon: b0703b0053323f598e01670ea702b8eb1e66e611
-  UMCShare: a250203b34a56cde25cc4c28335449b542f0255d
-  WechatOpenSDK: 7cd4d3386fb6ba5595d5fb863e0a3bfd43bc6768
-  YLCategory: 106bec2469fb1da5f70f7a35c66e499e64766226
+  UMAPM: 9766611aba84e0755afc785d4399f1e9fbb0a475
+  UMCCommon: 3c535e9e3958f72df075cc6fe4776fb5e403c8bc
+  UMCShare: e14e1399673fa361cddbde3a05b3743e10f673f7
+  UMDevice: c13bbb2e8ca6c67d1e23e03162553e3ec5a8b5b0
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
+  YLCategory: 72e98768a9784dd86b10ad9ed6e9269ac4daf8e1
 
 PODFILE CHECKSUM: 3b477dfb4fb1e64f06fe5f9a786332c36ed4886f
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.11.2

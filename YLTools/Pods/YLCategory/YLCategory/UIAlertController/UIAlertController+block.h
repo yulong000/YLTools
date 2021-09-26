@@ -60,6 +60,19 @@ typedef void(^UIAlertActionHandler)(UIAlertAction *action);
                                           actionModels:(NSArray<UIAlertActionModel *> *)actionModels;
 
 /**
+ 创建actionSheet类型
+ 
+ @param title 标题
+ @param message 内容
+ @param subTitles 选项的标题
+ @param handler 点击后的回调
+ */
++ (UIAlertController *)actionSheetControllerWithTitle:(NSString *)title
+                                              message:(NSString *)message
+                                            subTitles:(NSArray<NSString *> *)subTitles
+                                              handler:(void(^)(NSInteger index))handler;
+
+/**
  在屏幕中间弹出
 
  @param controller 要显示到的控制器

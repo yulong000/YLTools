@@ -198,4 +198,18 @@
 - (BOOL)isPriceText {
     return [self isValidateByRegex:@"((^[1-9]\\d*)|^0)(\\.\\d{0,2}){0,1}$"];
 }
+
+#pragma mark 数字或字母
+- (BOOL)isNumberOrChar {
+    return [self isValidateByRegex:@"^[A-Za-z0-9]+$"];
+}
+
+#pragma mark 密码校验
+- (BOOL)isPasswordWithMinLength:(NSUInteger)minLength maxLength:(NSUInteger)maxLength {
+    return [self isValidateByRegex:[NSString stringWithFormat:@"^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{%lu,%lu}", minLength, maxLength]];
+}
+- (BOOL)isPassword {
+    return [self isPasswordWithMinLength:6 maxLength:20];
+}
+
 @end

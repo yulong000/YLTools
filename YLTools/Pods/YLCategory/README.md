@@ -4,7 +4,7 @@
 
 ``` objective-c
 在Podfile里添加
-pod 'YLCategory', '~> 1.1.3'
+pod 'YLCategory', '~> 1.1.7'
 或者
 pod 'YLCategory'
 然后
@@ -24,5 +24,6 @@ pod 'YLCategory/UIControl'
 pod 'YLCategory/UIIamge'
 pod 'YLCategory/UILabel'
 pod 'YLCategory/UIView'
+pod 'YLCategory/UIViewController'
 pod 'YLCategory/Others'
 ```

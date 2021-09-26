@@ -1,17 +1,15 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
-    
+typedef NS_ENUM(NSInteger, Weekday) {
     Monday = 1,
     Tuesday,
     Wednesday,
     Thursday,
     Friday,
     Saturday,
-    Sunday
-    
-}Weekday;
+    Sunday,
+};
 
 @interface NSDate (category)
 
@@ -50,12 +48,21 @@ typedef enum {
 + (NSDate *)lastDayOfCurrentMonth;
 
 /**
- *  根据日期格式和字符串 创建日期实例  (0时区)
+ *  根据日期格式和字符串 创建日期实例
  *
  *  @param format 例如 @"yyyy-MM-dd"
  *  @param date   @"2015-07-31"
  */
 + (NSDate *)dateWithFormat:(NSString *)format string:(NSString *)date;
+
+/**
+ *  根据日期格式和时间戳 返回对应的时间字符串
+ *
+ *  @param format 例如 @"yyyy-MM-dd"
+ *  @param timeInterval   1631502739
+ */
++ (NSString *)dateStringWithFormat:(NSString *)format timeInterval:(NSTimeInterval)timeInterval;
+
 /**
  *  获取当前日期增加dayCount天的日期
  *
@@ -64,10 +71,7 @@ typedef enum {
  *  @return 对应的日期
  */
 - (NSDate *)dateAddDays:(NSInteger)dayCount;
-/**
- *  获取今天日期(系统设置的时区)
- */
-+ (NSDate *)today;
+
 /**
  *  获取昨天的日历
  */
@@ -78,7 +82,7 @@ typedef enum {
  *
  *  @return 存放7个日期的数组（从周一到周日）
  */
-- (NSArray *)datesForWholeWeek;
+- (NSArray <NSDate *> *)datesForWholeWeek;
 
 /**
  *  计算当前月的第一天是礼拜几
@@ -149,6 +153,7 @@ typedef enum {
  *  @return 如：11
  */
 - (NSUInteger)hour;
+
 /**
  *  获取日期对应的分钟数
  *
@@ -162,10 +167,12 @@ typedef enum {
  *  @return 如： 59
  */
 - (NSUInteger)second;
+
 /**
  *  获取日期为星期几
  */
 - (Weekday)weekday;
+
 /**
  把星期几转换成文字 如 "星期一"
  */
@@ -175,6 +182,20 @@ typedef enum {
  获取日期为星期几 如 "星期一"
  */
 - (NSString *)weekdayString;
+
+/**
+ *  是否为同一天的同一个小时同一分钟
+ *
+ *  @param otherDate 另一个日期
+ */
+- (BOOL)sameMinuteWithData:(NSDate *)otherData;
+
+/**
+ *  是否为同一天的同一个小时
+ *
+ *  @param otherDate 另一个日期
+ */
+- (BOOL)sameHourWithData:(NSDate *)otherData;
 
 /**
  *  是否为同一天
@@ -196,5 +217,12 @@ typedef enum {
  *  @param otherDate 另一个日期
  */
 - (BOOL)sameMonthWithDate:(NSDate *)otherDate;
+
+/**
+ *  是否在同一年
+ *
+ *  @param otherDate 另一个日期
+ */
+- (BOOL)sameYearWithData:(NSDate *)otherDate;
 
 @end

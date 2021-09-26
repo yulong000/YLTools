@@ -1,6 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-YLTools/Pods-YLTools-resources.sh
 ${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle
-${PODS_ROOT}/HXPhotoPicker/照片选择器/HXPhotoPicker/Resource/HXPhotoPicker.bundle
+${PODS_ROOT}/HXPhotoPicker/HXPhotoPicker/Resources/HXPhotoPicker.bundle
 ${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle
 ${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle
 ${PODS_ROOT}/YLCategory/YLCategory/MBProgressHUD/MBProgressHUD.bundle

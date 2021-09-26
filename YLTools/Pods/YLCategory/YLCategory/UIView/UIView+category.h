@@ -7,11 +7,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**  移除所有的子控件  */
 - (void)removeAllSubviews;
 
+/// 移除某一类子控件
+- (void)removeSubviewsWithClass:(Class)classRemove;
+
 /**  添加一组子控件  */
 - (void)addSubViewsFromArray:(NSArray *)subViews;
 
 /**  获取view所在的controller  */
-- (nullable UIViewController *)controller;
+- (nullable UIViewController *)vc;
 
 /**  设置边框  */
 - (void)setBorderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth;

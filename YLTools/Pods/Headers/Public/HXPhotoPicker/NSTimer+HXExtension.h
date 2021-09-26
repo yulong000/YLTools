@@ -1,1 +1,1 @@
-../../../HXPhotoPicker/照片选择器/HXPhotoPicker/Category/NSTimer+HXExtension.h
+../../../HXPhotoPicker/HXPhotoPicker/Category/NSTimer+HXExtension.h

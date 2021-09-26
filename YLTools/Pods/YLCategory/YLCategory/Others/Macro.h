@@ -12,22 +12,35 @@
 /****************************************  尺寸  ***********************************/
 
 //屏幕宽、高
+#ifndef kScreenWidth
 #define kScreenWidth                        [UIScreen mainScreen].bounds.size.width
-#define kScreenHeight                       [UIScreen mainScreen].bounds.size.height
+#endif
 
-#define kIsIphoneX                          (kScreenHeight == 812.0f || kScreenWidth == 812.0f)     // 是否是IphoneX
-#define kIsIphoneXR                         (kScreenHeight == 896.0f || kScreenWidth == 896.0f)     // 是否是iPhone XR
-#define kIsIphoneXS                         kIsIphoneX                                              // 是否是iPhone XS
-#define kIsIphoneXS_Max                     kIsIphoneXR                                             // 是否是iPhone XS_Max
-#define kIsFullScreen                       (kIsIphoneX || kIsIphoneXR)                             // 是否是全面屏
-#define kFullScreenTopSafeAreaHeight        44.0f    // 全面屏上面的安全区域
-#define kFullScreenBottomSafeAreaHeight     34.0f    // 全面屏下面的安全区域
-#define kBottomSafeAreaHeight               (kIsFullScreen ? 34.0f : 0.0f)       // 下面的安全区域
-#define kTopSafeAreaHeight                  (kIsFullScreen ? 44.0f : 0.0f)       // 上面的安全区域
-#define kTabbarHeight                       (kIsFullScreen ? 83.0f : 49.0f)      // 下面tabbar的高度
-#define kNavTotalHeight                     (kIsFullScreen ? 88.0f : 64.0f)      // 上面导航栏总高度
-#define kScreenScale                        [[UIScreen mainScreen] scale]        // 屏幕
+#ifndef kScreenHeight
+#define kScreenHeight                       [UIScreen mainScreen].bounds.size.height
+#endif
+
+#ifndef kStatusBarHeight
 #define kStatusBarHeight                    [UIApplication sharedApplication].statusBarFrame.size.height
+#endif
+
+#ifndef kIsPad
+#define kIsPad                              (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#endif
+
+// 自然分辨率
+#define kScreenScale                        [[UIScreen mainScreen] scale]
+// 全面屏的安全区域
+#define kSafeAreaInsets                     ^UIEdgeInsets {if (@available(iOS 11.0, *)) return [UIApplication sharedApplication].delegate.window.safeAreaInsets; else return UIEdgeInsetsZero;}()
+// 上面的安全区域
+#define kTopSafeAreaHeight                  kSafeAreaInsets.top
+// 下面的安全区域
+#define kBottomSafeAreaHeight               kSafeAreaInsets.bottom
+// 是否是全面屏
+#define kIsFullScreen                       (kBottomSafeAreaHeight > 0)
+
+#define kTabbarHeight                       (kIsFullScreen ? 83.0f : 49.0f)         // 下面tabbar的高度
+#define kNavTotalHeight                     (kStatusBarHeight + 44.0f)              // 上面导航栏总高度
 
 
 /****************************************  颜色  ***********************************/
@@ -62,16 +75,19 @@
 // 十六进制获取颜色
 #define UIColorFromHex(s)           [UIColor colorWithRed:(((s & 0xFF0000) >> 16))/255.0 green:(((s & 0xFF00) >> 8))/255.0 blue:((s & 0xFF))/255.0  alpha:1.0]
 // 半透明黑
-#define BlackColorAlpha(a)      [UIColor colorWithWhite:0 alpha:a]
+#define BlackColorAlpha(a)          [UIColor colorWithWhite:0 alpha:a]
 // 半透明白
-#define WhiteColorAlpha(a)      [UIColor colorWithWhite:1 alpha:a]
+#define WhiteColorAlpha(a)          [UIColor colorWithWhite:1 alpha:a]
+// 自定义灰色
+#define GrayColorComponent(w)       [UIColor colorWithWhite:w alpha:1]
 
 /****************************************  数据类型转换  ***********************************/
 
 // int float -> string
 #define NSStringFromInt(int)            [NSString stringWithFormat:@"%d", int]
 #define NSStringFromUInt(int)           [NSString stringWithFormat:@"%u", int]
-#define NSStringFromInteger(integer)    [NSString stringWithFormat:@"%ld", integer]
+#define NSStringFromInteger(integer)    [NSString stringWithFormat:@"%zd", integer]
+#define NSStringFromUInteger(integer)   [NSString stringWithFormat:@"%tu", integer]
 #define NSStringFromFloat(float)        [NSString stringWithFormat:@"%f", float]
 #define NSStringFromFloatPrice(float)   [NSString stringWithFormat:@"%.2f", float]
 
@@ -95,7 +111,12 @@
 #define StretchImageName(imageName)     [ImageWithName(imageName) \
                                         stretchableImageWithLeftCapWidth:ImageWithName(imageName).size.width * 0.5 \
                                         topCapHeight:ImageWithName(imageName).size.height * 0.5]
-#define StretchImage(image)             [image stretchableImageWithLeftCapWidth:image.size.width * 0.5 topCapHeight:image.size.height * 0.5]
+#define StretchImage(image)             [image stretchableImageWithLeftCapWidth:image.size.width * 0.5 \
+                                        topCapHeight:image.size.height * 0.5]
+// 从指定位置拉伸图片
+#define StretchImageNameWith(imageName, left, top)  [ImageWithName(imageName) \
+                                                    stretchableImageWithLeftCapWidth:left topCapHeight:top]
+#define StretchImageWith(image, left, top)          [image stretchableImageWithLeftCapWidth:left topCapHeight:top]
 
 
 // 文件路径
@@ -103,16 +124,33 @@
 #define kCachePath                      [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
 #define kBundlePath(file)               [[NSBundle mainBundle] pathForResource:file ofType:nil]
 
-// 版本号
+// app版本号
 #define kAPP_Version                     [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 // building 号
 #define kAPP_Build_Number                [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
 // app Name
 #define kAPP_Name                        [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
+// 系统版本号
+#define kSystem_version                  [[UIDevice currentDevice].systemName stringByAppendingFormat:@" %@", [UIDevice currentDevice].systemVersion]
 
 //  appDelegate
 #define kAppDelegate                    [UIApplication sharedApplication].delegate
 //  keyWindow
-#define kAppKeyWindow                   kAppDelegate.window
+#define kAppKeyWindow                   ^UIWindow * { \
+                                            if (@available(iOS 13.0, *)) { \
+                                                    for (UIWindowScene *scene in [UIApplication sharedApplication].connectedScenes) { \
+                                                        if (scene.activationState == UISceneActivationStateForegroundActive) { \
+                                                            for (UIWindow *window in scene.windows) { \
+                                                                if (window.isKeyWindow) { \
+                                                                    return window; \
+                                                                } \
+                                                            } \
+                                                        } \
+                                                    } \
+                                                return [UIApplication sharedApplication].delegate.window; \
+                                            } else { \
+                                                return [UIApplication sharedApplication].keyWindow; \
+                                            } \
+                                        }()
 
 #endif /* Macro_h */

@@ -1,1 +1,1 @@
-../../../HXPhotoPicker/照片选择器/HXPhotoPicker/HXPhotoCustomNavigationBar.h
+../../../HXPhotoPicker/HXPhotoPicker/View/HXPhotoCustomNavigationBar.h

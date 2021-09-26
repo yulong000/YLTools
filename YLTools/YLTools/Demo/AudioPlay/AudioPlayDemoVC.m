@@ -83,10 +83,10 @@
     localAudioLabel.textColor = BlueColor;
     [self.view addSubview:localAudioLabel];
     
-    [netAudioLabel addTapGestureHandleBlock:^(UIView *view, UITapGestureRecognizer *tap) {
+    [netAudioLabel addTapGestureWithHandler:^(UIView *view, UITapGestureRecognizer *tap) {
         [weakSelf.player playWithUrl:((UILabel *)view).text];
     }];
-    [localAudioLabel addTapGestureHandleBlock:^(UIView *view, UITapGestureRecognizer *tap) {
+    [localAudioLabel addTapGestureWithHandler:^(UIView *view, UITapGestureRecognizer *tap) {
         [weakSelf.player playWithFileData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:((UILabel *)view).text ofType:@"mp3"]]];
     }];
 }

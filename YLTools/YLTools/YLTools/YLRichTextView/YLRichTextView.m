@@ -43,9 +43,9 @@
 #pragma mark 加载完毕,计算高度
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     __weak typeof(self) weakSelf = self;
-    [webView evaluateJavaScript:@"document.body.offsetHeight;" completionHandler:^(NSNumber *height, NSError * _Nullable error) {
+    [webView evaluateJavaScript:@"document.body.scrollHeight;" completionHandler:^(NSNumber *height, NSError * _Nullable error) {
         if(weakSelf.autoHeight == NO)   return;
-        weakSelf.webView.height = height.floatValue + 20;
+        weakSelf.webView.height = height.floatValue;
         if(weakSelf.heightChangedBlock) {
             weakSelf.heightChangedBlock(weakSelf.webView.height, weakSelf);
         }

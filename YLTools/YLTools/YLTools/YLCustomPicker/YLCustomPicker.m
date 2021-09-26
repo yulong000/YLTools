@@ -107,7 +107,7 @@
         
         
         __weak typeof(self) weakSelf = self;
-        [self.bgView addTapGestureHandleBlock:^(UIView *view, UITapGestureRecognizer *tap) {
+        [self.bgView addTapGestureWithHandler:^(UIView *view, UITapGestureRecognizer *tap) {
             [weakSelf cancel];
         }];
     }

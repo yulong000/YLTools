@@ -1,1 +1,1 @@
-../../../HXPhotoPicker/照片选择器/HXPhotoPicker/Category/UIButton+HXExtension.h
+../../../HXPhotoPicker/HXPhotoPicker/Category/UIButton+HXExtension.h

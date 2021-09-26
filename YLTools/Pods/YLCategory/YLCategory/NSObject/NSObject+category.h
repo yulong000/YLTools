@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface NSObject (category)
 
@@ -7,5 +8,13 @@
 
 /**  是否是 [NSNull null]  */
 - (BOOL)isNull;
+
+/// 获取显示在最上面的控制器
++ (UIViewController *)topVc;
+
+/// 获取缓存大小
++ (NSString *)getCacheInfo;
+/// 清除缓存
++ (void)clearCache;
 
 @end

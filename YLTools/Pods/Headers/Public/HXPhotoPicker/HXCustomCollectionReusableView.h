@@ -1,1 +1,1 @@
-../../../HXPhotoPicker/照片选择器/HXPhotoPicker/HXCustomCollectionReusableView.h
+../../../HXPhotoPicker/HXPhotoPicker/View/HXCustomCollectionReusableView.h

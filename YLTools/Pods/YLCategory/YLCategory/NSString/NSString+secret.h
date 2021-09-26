@@ -18,6 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**  MD5 大写 加密  */
 - (NSString *)MD5_upper;
 
+/** base 64 编码 */
+- (nullable NSString *)base64Encode;
+
+/** base 64 解码 */
+- (nullable NSString *)base64Decode;
+
 @end
 
 NS_ASSUME_NONNULL_END

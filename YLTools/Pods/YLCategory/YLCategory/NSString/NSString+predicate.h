@@ -45,4 +45,18 @@
  */
 - (BOOL)isPriceText;
 
+
+/// 只包含字母和数字
+- (BOOL)isNumberOrChar;
+
+
+/// 密码校验  (数字和字母组合)
+/// @param minLength 最小长度
+/// @param maxLength 最大长度
+- (BOOL)isPasswordWithMinLength:(NSUInteger)minLength maxLength:(NSUInteger)maxLength;
+
+
+///密码校验 6-20位数字字母组合
+- (BOOL)isPassword;
+
 @end

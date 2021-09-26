@@ -1,1 +1,1 @@
-../../../HXPhotoPicker/照片选择器/HXPhotoPicker/HXAlbumListViewController.h
+../../../HXPhotoPicker/HXPhotoPicker/Controller/HXAlbumListViewController.h

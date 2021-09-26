@@ -29,7 +29,7 @@ static const char UIButtonClickedBlockKey = '\0';
     if(image)           [button setImage:image forState:UIControlStateNormal];
     if(backgroundImage) [button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     if(clickedBlock)    button.clickedBlock = clickedBlock;
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.titleLabel.adjustsFontSizeToFitWidth = YES;
     button.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     button.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -47,6 +47,12 @@ static const char UIButtonClickedBlockKey = '\0';
 
 + (instancetype)buttonWithImage:(UIImage *)image clickBlock:(UIButtonClickedBlock)clickedBlock {
     return [UIButton buttonWithTitle:nil image:image clickBlock:clickedBlock];
+}
+
++ (instancetype)buttonWithImage:(UIImage *)image selectedImage:(UIImage *)selectedImage clickBlock:(UIButtonClickedBlock)clickedBlock {
+    UIButton *button = [UIButton buttonWithImage:image clickBlock:clickedBlock];
+    [button setImage:selectedImage forState:UIControlStateSelected];
+    return button;
 }
 
 + (instancetype)buttonWithClickBlock:(UIButtonClickedBlock)clickedBlock {
@@ -70,7 +76,35 @@ static const char UIButtonClickedBlockKey = '\0';
     UIButton *btn = [UIButton buttonWithTitle:title backgroundImage:bgImage clickBlock:clickedBlock];
     btn.layer.cornerRadius = cornerRadius;
     btn.clipsToBounds = YES;
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:15];
     return btn;
+}
+
++ (instancetype)buttonWithTitle:(NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font clickedBlock:(UIButtonClickedBlock)clickedBlock {
+    UIButton *btn = [self buttonWithTitle:title clickBlock:clickedBlock];
+    [btn setTitleColor:titleColor forState:UIControlStateNormal];
+    btn.titleLabel.font = font;
+    return btn;
+}
+
++ (instancetype)buttonWithTitle:(NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font backgroundImageCorlor:(UIColor *)bgImageColor cornerRadius:(CGFloat)cornerRadius clickedBlock:(UIButtonClickedBlock)clickedBlock {
+    UIButton *btn = [self buttonWithTitle:title backgroundImageCorlor:bgImageColor cornerRadius:cornerRadius clickBlock:clickedBlock];
+    [btn setTitleColor:titleColor forState:UIControlStateNormal];
+    btn.titleLabel.font = font;
+    return btn;
+}
+
+- (CGSize)sizeWithTitlePadding:(CGFloat)padding fixHeight:(CGFloat)fixHeight {
+    CGSize titleSize = [self.titleLabel sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+    CGRect frame = self.frame;
+    frame.size = CGSizeMake(titleSize.width + padding * 2, titleSize.height);
+    if(fixHeight > 0) {
+        frame.size.height = fixHeight;
+    }
+    self.frame = frame;
+    self.titleEdgeInsets = UIEdgeInsetsZero;
+    return frame.size;
 }
 
 #pragma mark 获取纯色图片
