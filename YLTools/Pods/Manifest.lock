@@ -22,6 +22,7 @@ PODS:
     - HXPhotoPicker/Default (= 3.2.3)
   - HXPhotoPicker/Default (3.2.3)
   - MJExtension (3.3.0)
+  - MJRefresh (3.7.5)
   - SAMKeychain (1.5.3)
   - UMAPM (1.4.2)
   - UMCCommon (7.3.5):
@@ -77,6 +78,7 @@ DEPENDENCIES:
   - AMapLocation
   - HXPhotoPicker
   - MJExtension
+  - MJRefresh
   - SAMKeychain
   - UMCCommon
   - UMCShare/Social/ReducedQQ
@@ -94,6 +96,7 @@ SPEC REPOS:
     - AMapLocation
     - HXPhotoPicker
     - MJExtension
+    - MJRefresh
     - SAMKeychain
     - UMAPM
     - UMCCommon
@@ -109,6 +112,7 @@ SPEC CHECKSUMS:
   AMapLocation: 720eb034995c6198d480f8f7bbd714bb08bb9ef7
   HXPhotoPicker: f05aa6d293a13ba1b3f3523779c97e390ed44a42
   MJExtension: 01704cca2b60a214c10761b6491eab74069d68a9
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
   UMAPM: 9766611aba84e0755afc785d4399f1e9fbb0a475
   UMCCommon: 3c535e9e3958f72df075cc6fe4776fb5e403c8bc
@@ -117,6 +121,6 @@ SPEC CHECKSUMS:
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
   YLCategory: 72e98768a9784dd86b10ad9ed6e9269ac4daf8e1
 
-PODFILE CHECKSUM: 3b477dfb4fb1e64f06fe5f9a786332c36ed4886f
+PODFILE CHECKSUM: 25ddacbd34b0c0598dbce0c4ee5e924d8a661aa0
 
 COCOAPODS: 1.11.2

@@ -23,19 +23,25 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [WXApi registerApp:@"" universalLink:@""];
+//    [WXApi registerApp:@"" universalLink:@""];
     [AMapServices sharedServices].apiKey = @"b61e2a98bb1f20168ee610217b153f80";
     
     // 友盟
-    [UMConfigure initWithAppkey:@"5d44f5260cafb27ea4000922" channel:nil];
-    [UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wxeb5335a24d2af0c6" appSecret:@"eda31dc6541b77ef241f1a3f6a9832d7" redirectURL:@"https://www.baidu.com"];
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"3921700954" appSecret:@"bb6c37b6f0c7f324e288fdacdc52217a" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"101659399"  appSecret:@"101659399" redirectURL:nil];
+//    [UMConfigure initWithAppkey:@"5d44f5260cafb27ea4000922" channel:nil];
+//    [UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
+//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wxeb5335a24d2af0c6" appSecret:@"eda31dc6541b77ef241f1a3f6a9832d7" redirectURL:@"https://www.baidu.com"];
+//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"3921700954" appSecret:@"bb6c37b6f0c7f324e288fdacdc52217a" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
+//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"101659399"  appSecret:@"101659399" redirectURL:nil];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     ViewController *vc = [[ViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+        appearance.backgroundColor = RGBA(98, 171, 53, 1);
+        nav.navigationBar.scrollEdgeAppearance = appearance;
+        nav.navigationBar.standardAppearance = appearance;
+    }
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     return YES;

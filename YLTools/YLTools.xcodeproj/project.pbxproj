@@ -52,6 +52,8 @@
 		006A982A243B1E2E000CB451 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A9829243B1E2E000CB451 /* main.m */; };
 		006A9834243B1E2E000CB451 /* YLToolsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A9833243B1E2E000CB451 /* YLToolsTests.m */; };
 		006A983F243B1E2E000CB451 /* YLToolsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A983E243B1E2E000CB451 /* YLToolsUITests.m */; };
+		00AB5DBE27B5097D00BD3A9A /* YLPraiseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB5DBD27B5097D00BD3A9A /* YLPraiseButton.m */; };
+		00AB958027B5128E00B93450 /* PraiseDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB957F27B5128E00B93450 /* PraiseDemoVC.m */; };
 		00DCDF3B26FC994200E9AEA3 /* YLWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DCDF3926FC994200E9AEA3 /* YLWaterFlowLayout.m */; };
 		00DCDF5D26FEB46B00E9AEA3 /* WaterFlowDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DCDF5C26FEB46B00E9AEA3 /* WaterFlowDemoVC.m */; };
 		00DCDF6126FEFD6400E9AEA3 /* YLShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DCDF5F26FEFD6400E9AEA3 /* YLShadowView.m */; };
@@ -168,6 +170,10 @@
 		006A983A243B1E2E000CB451 /* YLToolsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YLToolsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		006A983E243B1E2E000CB451 /* YLToolsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLToolsUITests.m; sourceTree = "<group>"; };
 		006A9840243B1E2E000CB451 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00AB5DBC27B5097D00BD3A9A /* YLPraiseButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLPraiseButton.h; sourceTree = "<group>"; };
+		00AB5DBD27B5097D00BD3A9A /* YLPraiseButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLPraiseButton.m; sourceTree = "<group>"; };
+		00AB957E27B5128E00B93450 /* PraiseDemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PraiseDemoVC.h; sourceTree = "<group>"; };
+		00AB957F27B5128E00B93450 /* PraiseDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PraiseDemoVC.m; sourceTree = "<group>"; };
 		00DCDF3926FC994200E9AEA3 /* YLWaterFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLWaterFlowLayout.m; sourceTree = "<group>"; };
 		00DCDF3A26FC994200E9AEA3 /* YLWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLWaterFlowLayout.h; sourceTree = "<group>"; };
 		00DCDF5B26FEB46B00E9AEA3 /* WaterFlowDemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterFlowDemoVC.h; sourceTree = "<group>"; };
@@ -209,6 +215,7 @@
 		00310A77244944CF00592F90 /* YLTools */ = {
 			isa = PBXGroup;
 			children = (
+				00AB5DBB27B5092C00BD3A9A /* YLPraiseButton */,
 				00DCDF5E26FEFD6400E9AEA3 /* YLShadowView */,
 				00DCDF3826FC994200E9AEA3 /* YLWaterFlowLayout */,
 				00310AC02449551700592F90 /* YLPaymentTools */,
@@ -398,6 +405,7 @@
 		00310AC72449565400592F90 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				00AB5DBA27B5090400BD3A9A /* praise */,
 				00DCDF5A26FEB44300E9AEA3 /* waterflow */,
 				00310AC82449565400592F90 /* TextView */,
 				00310ACB2449565400592F90 /* PhotoPicker */,
@@ -637,6 +645,24 @@
 			path = YLToolsUITests;
 			sourceTree = "<group>";
 		};
+		00AB5DBA27B5090400BD3A9A /* praise */ = {
+			isa = PBXGroup;
+			children = (
+				00AB957E27B5128E00B93450 /* PraiseDemoVC.h */,
+				00AB957F27B5128E00B93450 /* PraiseDemoVC.m */,
+			);
+			path = praise;
+			sourceTree = "<group>";
+		};
+		00AB5DBB27B5092C00BD3A9A /* YLPraiseButton */ = {
+			isa = PBXGroup;
+			children = (
+				00AB5DBC27B5097D00BD3A9A /* YLPraiseButton.h */,
+				00AB5DBD27B5097D00BD3A9A /* YLPraiseButton.m */,
+			);
+			path = YLPraiseButton;
+			sourceTree = "<group>";
+		};
 		00DCDF3826FC994200E9AEA3 /* YLWaterFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -872,6 +898,7 @@
 				00310B192449565500592F90 /* WeChatLoginDemoVC.m in Sources */,
 				00310AA22449519900592F90 /* YLLocationTools.m in Sources */,
 				00310ABB2449549900592F90 /* YLDatePicker.m in Sources */,
+				00AB5DBE27B5097D00BD3A9A /* YLPraiseButton.m in Sources */,
 				00310ABF244954E700592F90 /* YLWeakTimer.m in Sources */,
 				00310B142449565500592F90 /* AdvertisementModel.m in Sources */,
 				00310B082449565500592F90 /* TextViewDemoVC.m in Sources */,
@@ -899,6 +926,7 @@
 				006A982A243B1E2E000CB451 /* main.m in Sources */,
 				00310B112449565500592F90 /* LocationDemoVC.m in Sources */,
 				00310AC62449562600592F90 /* ViewTableViewCell.m in Sources */,
+				00AB958027B5128E00B93450 /* PraiseDemoVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

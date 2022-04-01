@@ -44,7 +44,8 @@
                      @{@"title" : @"圆角View",    @"controller" : @"CornerViewDemoVC"},
                      @{@"title" : @"自定义选择器",  @"controller" : @"CustomPickerDemoVC"},
                      @{@"title" : @"富文本显示",   @"controller" : @"RichTextViewDemoVC"},
-                     @{@"title" : @"瀑布流",      @"controller" : @"WaterFlowDemoVC"},];
+                     @{@"title" : @"瀑布流",      @"controller" : @"WaterFlowDemoVC"},
+                     @{@"title" : @"仿今日头条点赞",@"controller" : @"PraiseDemoVC"},];
     }
     return _dataArr;
 }

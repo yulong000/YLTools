@@ -15,5 +15,6 @@ pod 'UMCShare/Social/ReducedWeChat'
 pod 'UMCShare/Social/ReducedQQ'
 pod 'UMCShare/Social/ReducedSina'
 pod 'UMCCommon'
+pod 'MJRefresh'
 
 end

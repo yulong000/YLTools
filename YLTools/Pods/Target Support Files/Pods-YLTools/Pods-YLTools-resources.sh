@@ -99,6 +99,7 @@ EOM
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle"
   install_resource "${PODS_ROOT}/HXPhotoPicker/HXPhotoPicker/Resources/HXPhotoPicker.bundle"
+  install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle"
   install_resource "${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle"
   install_resource "${PODS_ROOT}/YLCategory/YLCategory/MBProgressHUD/MBProgressHUD.bundle"
@@ -106,6 +107,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle"
   install_resource "${PODS_ROOT}/HXPhotoPicker/HXPhotoPicker/Resources/HXPhotoPicker.bundle"
+  install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle"
   install_resource "${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle"
   install_resource "${PODS_ROOT}/YLCategory/YLCategory/MBProgressHUD/MBProgressHUD.bundle"
